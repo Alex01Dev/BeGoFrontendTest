@@ -27,3 +27,30 @@ export interface Order {
 
   driver_thumbnail?: string | null;
 }
+
+export interface OrderDetailModel {
+  id: string;
+
+  orderNumber: string;
+
+  status: string;
+
+  statusClass: string;
+
+  pickupCity: string;
+  pickupAddress: string;
+
+  dropoffCity: string;
+  dropoffAddress: string;
+
+  pickupDate: string;
+  dropoffDate: string;
+
+  pickupTimestamp: number;
+  dropoffTimestamp: number;
+
+  driverName: string;
+  driverPhone: string;
+  driverEmail: string;
+  driverThumbnail: string | null;
+}

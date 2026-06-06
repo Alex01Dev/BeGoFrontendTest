@@ -88,18 +88,6 @@ export interface OrderCardModel {
     showPickupButton: boolean;
 }
 
-export interface OrderDetailModel {
-  id: string;
-  orderNumber: string;
-
-  driver: string;
-  manager: string;
-
-  route: string;
-
-  total: number;
-}
-
 export interface Props {
     order: UpcomingOrder;
 }
