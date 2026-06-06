@@ -1,7 +1,12 @@
 import "./SearchBar.scss";
 import SearchIcon from "../../assets/icons/SearchIcon";
 
-export default function SearchBar() {
+interface Props {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+export default function SearchBar({ value, onChange }: Props) {
   return (
     <div className="search-bar">
       <SearchIcon />
@@ -9,6 +14,8 @@ export default function SearchBar() {
       <input
         type="text"
         placeholder=""
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
       />
     </div>
   );

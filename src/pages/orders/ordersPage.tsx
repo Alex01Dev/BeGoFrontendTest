@@ -1,5 +1,5 @@
-import { useOrders } from "../../hooks/useOrders";
-import { useState } from "react";
+import { useUpcomingOrder } from "../../hooks/useUpcomingOrder";
+import { useState, useMemo } from "react";
 
 import Header from "../../components/header/header";
 import Tabs from "../../components/tabs/tabs";
@@ -9,46 +9,36 @@ import OrderCard from "../../components/orderCard/orderCard";
 import "./orderPage.scss";
 
 export default function OrdersPage() {
-  const { orders, loading } = useOrders();
-  const [activeTab, setActiveTab] = useState("Upcoming");
+  const { orders, loading } = useUpcomingOrder();
+
+  const [search, setSearch] = useState("");
+
+  const filteredOrders = useMemo(() => {
+    return (orders ?? []).filter((order) =>
+      order.order_number.toLowerCase().includes(search.toLowerCase())
+    );
+  }, [orders, search]);
 
   if (loading) {
     return <h1>Loading...</h1>;
   }
 
-  // 🔥 filtro más claro y mantenible
-  const filteredOrders = orders.filter((order) => {
-    const statusMap: Record<string, number[]> = {
-      Upcoming: [1],
-      Completed: [2],
-      Cancelled: [3],
-    };
-
-    const allowedStatuses = statusMap[activeTab];
-
-    if (!allowedStatuses) return true;
-
-    return allowedStatuses.includes(order.status);
-  });
-
   return (
     <main className="orders-page">
       <Header />
 
-      <Tabs
-        activeTab={activeTab}
-        onTabChange={setActiveTab}
-      />
+      <Tabs activeTab="Upcoming" onTabChange={() => {}} />
 
-      <SearchBar />
+      <SearchBar value={search} onChange={setSearch} />
 
       <section className="orders-list">
-        {filteredOrders.map((order) => (
-          <OrderCard
-            key={order._id}
-            order={order}
-          />
-        ))}
+        {filteredOrders.length > 0 ? (
+          filteredOrders.map((order) => (
+            <OrderCard key={order._id} order={order} />
+          ))
+        ) : (
+          <p>No orders found</p>
+        )}
       </section>
     </main>
   );
