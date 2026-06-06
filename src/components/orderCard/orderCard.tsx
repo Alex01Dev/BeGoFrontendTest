@@ -16,21 +16,14 @@ export default function OrderCard({ order }: Props) {
 
   const card = mapOrderToCard(order);
 
-  const formatDateTime = (value: string) => {
-    if (!value) {
-      return { date: "", time: "" };
-    }
+  const splitDateTime = (value: string) => {
+    const [date = "", time = ""] = value.split(" ");
 
-    const parts = value.split(" ");
-
-    return {
-      date: parts[0] ?? "",
-      time: parts[1] ?? "",
-    };
+    return { date, time };
   };
 
-  const pickup = formatDateTime(card.pickupDate);
-  const dropoff = formatDateTime(card.dropoffDate);
+  const pickup = splitDateTime(card.pickupDate);
+  const dropoff = splitDateTime(card.dropoffDate);
 
   return (
     <div className="order-card-wrapper">
@@ -39,7 +32,7 @@ export default function OrderCard({ order }: Props) {
       </div>
 
       <article className="order-card">
-        <div className="order-card__status">
+        <header className="order-card__status">
           <div className="order-card__type">
             <TruckIcon />
             <span>{card.type}</span>
@@ -49,15 +42,15 @@ export default function OrderCard({ order }: Props) {
             <span className="status-dot" />
             {card.status}
           </div>
-        </div>
+        </header>
 
-        <div className="order-card__body">
+        <section className="order-card__content">
           <div className="order-card__location pickup">
             <div className="location-icon">
               <LocationIcon />
             </div>
 
-            <div className="location-content">
+            <div className="location-info">
               <span className="location-label">PICKUP</span>
 
               <h4>{card.pickupName}</h4>
@@ -71,12 +64,12 @@ export default function OrderCard({ order }: Props) {
             </div>
           </div>
 
-          <div className="order-card__location">
+          <div className="order-card__location dropoff">
             <div className="location-icon">
               <LocationIcon />
             </div>
 
-            <div className="location-content">
+            <div className="location-info">
               <span className="location-label">DROPOFF</span>
 
               <h4>{card.dropoffName}</h4>
@@ -89,11 +82,11 @@ export default function OrderCard({ order }: Props) {
               <strong>{dropoff.time}</strong>
             </div>
           </div>
-        </div>
+        </section>
 
-        <div
-          className={`order-card__actions ${
-            !card.showPickupButton ? "single-action" : ""
+        <footer
+          className={`order-card__footer ${
+            card.showPickupButton ? "dual" : "single"
           }`}
         >
           {card.showPickupButton && (
@@ -109,7 +102,7 @@ export default function OrderCard({ order }: Props) {
             Resume
             <EyeIcon />
           </button>
-        </div>
+        </footer>
       </article>
     </div>
   );

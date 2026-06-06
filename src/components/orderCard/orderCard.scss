@@ -1,16 +1,16 @@
-@use "../../styles/variables" as *;
-
 .order-card-wrapper {
   width: 100%;
 }
 
 .order-card__external-id {
-  margin-bottom: 12px;
+  margin: 0 0 12px 8px;
 
-  color: #ffffff;
+  text-align: left;
 
-  font-size: clamp(14px, 1.2vw, 18px);
-  font-weight: 700;
+  color: rgba(255, 255, 255, 0.62);
+
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .order-card {
@@ -18,19 +18,19 @@
 
   background:
     radial-gradient(
-      circle at top left,
-      rgba(47, 89, 170, 0.22),
-      transparent 38%
+      circle at 20% 50%,
+      rgba(20, 60, 150, 0.12),
+      transparent 45%
     ),
     linear-gradient(
       180deg,
-      #0f1722 0%,
-      #091019 100%
+      #090d12 0%,
+      #06090d 100%
     );
 
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
 
-  border-radius: 22px;
+  border-radius: 18px;
 
   overflow: hidden;
 
@@ -38,18 +38,18 @@
   flex-direction: column;
 
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.03),
-    0 0 24px rgba(0, 0, 0, 0.2);
+    inset 0 0 0 1px rgba(255, 255, 255, 0.02),
+    0 10px 24px rgba(0, 0, 0, 0.35);
 }
 
 .order-card__status {
-  min-height: 62px;
+  height: 42px;
+
+  padding: 0 14px;
 
   display: flex;
-  justify-content: space-between;
   align-items: center;
-
-  padding: 0 18px;
+  justify-content: space-between;
 
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -57,57 +57,57 @@
 .order-card__type {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 
-  color: #ffffff;
+  color: #f5f5f5;
 
-  font-size: clamp(14px, 1vw, 16px);
+  font-size: 14px;
   font-weight: 600;
 }
 
 .order-card__current-status {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.8);
 
-  font-size: clamp(11px, 0.9vw, 13px);
+  font-size: 11px;
   font-weight: 500;
 }
 
 .status-dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 
   border-radius: 50%;
 
-  background: #0095ff;
+  background: #1194ff;
 
-  box-shadow: 0 0 8px rgba(0, 149, 255, 0.8);
+  box-shadow: 0 0 8px rgba(17, 148, 255, 0.8);
 }
 
-.order-card__body {
-  padding: 18px;
+.order-card__content {
+  padding: 18px 16px 14px;
 }
 
 .order-card__location {
+  position: relative;
+
   display: grid;
 
   grid-template-columns:
-    24px
+    20px
     minmax(0, 1fr)
-    60px;
+    64px;
 
   column-gap: 12px;
 
   align-items: start;
-
-  position: relative;
 }
 
-.order-card__location + .order-card__location {
-  margin-top: 22px;
+.dropoff {
+  margin-top: 16px;
 }
 
 .pickup::after {
@@ -115,61 +115,65 @@
 
   position: absolute;
 
-  left: 11px;
-  top: 28px;
+  left: 9px;
+  top: 20px;
 
   width: 1px;
-  height: 34px;
+  height: 44px;
 
   background: rgba(255, 255, 255, 0.16);
 }
 
 .location-icon {
-  width: 24px;
+  width: 20px;
 
   display: flex;
   justify-content: center;
   align-items: flex-start;
+
+  padding-top: 3px;
 }
 
-.location-content {
+.location-info {
   min-width: 0;
+
+  text-align: left;
 }
 
 .location-label {
   display: block;
 
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 
-  color: rgba(255, 255, 255, 0.32);
+  color: rgba(255, 255, 255, 0.18);
 
-  font-size: 9px;
+  font-size: 7px;
   font-weight: 700;
 
-  letter-spacing: 1px;
+  letter-spacing: 1.4px;
 }
 
-.location-content h4 {
+.location-info h4 {
   margin: 0;
 
-  color: #ffffff;
+  color: #f3f3f3;
 
-  font-size: clamp(16px, 1.5vw, 18px);
+  font-size: 15px;
   font-weight: 700;
 
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
-.location-content p {
-  margin: 3px 0 0;
+.location-info p {
+  margin-top: 2px;
 
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.38);
 
   font-size: 12px;
 
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .location-date {
@@ -177,111 +181,98 @@
   flex-direction: column;
   align-items: flex-end;
 
-  flex-shrink: 0;
+  padding-top: 2px;
 }
 
 .location-date span {
-  color: rgba(255, 255, 255, 0.42);
+  color: rgba(255, 255, 255, 0.35);
 
   font-size: 10px;
   font-weight: 500;
+
+  line-height: 1;
 }
 
 .location-date strong {
-  margin-top: 2px;
+  margin-top: 3px;
 
-  color: #ffffff;
+  color: #f5f5f5;
 
-  font-size: clamp(15px, 1.2vw, 18px);
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 600;
+
+  line-height: 1;
 }
 
-.order-card__actions {
+.order-card__footer {
   display: flex;
 
-  gap: 14px;
+  gap: 10px;
 
-  padding: 0 10px 10px;
+  margin-top: 14px;
 }
+
+.dual .pickup-btn {
+  flex: 1.45;
+}
+
+.dual .resume-btn {
+  flex: 1;
+}
+
+.single {
+  justify-content: flex-end;
+}
+
+.single .resume-btn {
+  width: 140px;
+}
+
+/* BOTONES SIN CAMBIOS */
 
 .pickup-btn,
 .resume-btn {
-  height: 42px;
+  height: 44px;
 
   border: none;
 
-  background: #ffeb00;
+  background: #ffea00;
 
-  color: #111111;
+  color: #111;
 
+  font-size: 14px;
   font-weight: 700;
 
   cursor: pointer;
-
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 0 10px rgba(255, 235, 0, 0.18);
-
-  transition: 0.2s ease;
-}
-
-.pickup-btn:hover,
-.resume-btn:hover {
-  transform: translateY(-1px);
 }
 
 .pickup-btn {
-  flex: 1;
-
-  border-radius: 999px;
+  border-radius: 0 20px 0 18px;
 }
 
 .resume-btn {
-  flex: 0 0 95px;
-
-  border-radius: 999px;
-
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-}
 
-.single-action {
-  justify-content: flex-end;
-}
-
-.single-action .resume-btn {
-  flex: 0 0 95px;
+  border-radius: 20px 0 18px 0;
 }
 
 @media (max-width: 480px) {
-  .order-card__body {
-    padding: 14px;
+  .order-card__content {
+    padding: 16px 14px 12px;
   }
 
-  .order-card__actions {
-    gap: 10px;
-    padding: 0 8px 8px;
+  .location-info h4 {
+    font-size: 15px;
   }
 
-  .resume-btn {
-    flex-basis: 88px;
+  .location-info p {
+    font-size: 11px;
   }
 
-  .location-content p {
-    max-width: 100%;
-  }
-}
-
-@media (min-width: 768px) {
-  .order-card {
-    max-width: 620px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .order-card {
-    max-width: 680px;
+  .location-date strong {
+    font-size: 15px;
   }
 }
