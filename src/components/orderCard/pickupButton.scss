@@ -1,0 +1,73 @@
+@use "../../styles/variables" as *;
+
+.pickup-btn {
+  height: 44px;
+
+  border: none;
+
+  background: $yellow;
+
+  color: #111;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  border-radius: 0 20px 0 18px;
+
+  transition: all 0.25s ease;
+}
+
+.pickup-btn:disabled {
+  opacity: 0.9;
+}
+
+.pickup-btn--active {
+  background: rgba(47, 49, 53, 0.2) !important;
+
+  border: 1px solid rgba(90, 90, 90, 0.45);
+
+  color: $text-primary;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 0 14px;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 0 18px rgba(234, 244, 252, 0.12);
+}
+
+.pickup-label {
+  color: rgba(255, 255, 255, 0.78);
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.pickup-time {
+  color: $yellow;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  letter-spacing: 0.4px;
+}
+
+@keyframes pulseTimer {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.65;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

@@ -8,6 +8,12 @@ export interface UpcomingOrder {
 
   status: number;
 
+  status_string: string;
+
+  status_class: string;
+
+  type: string;
+
   reference_number: string;
 
   manager: {
@@ -61,4 +67,39 @@ export interface UpcomingOrder {
   start_date: number;
 
   end_date: number;
+}
+
+export interface OrderCardModel {
+    id: string;
+    orderNumber: string;
+    type: string;
+    status: string;
+    statusClass: string;
+
+    pickupName: string;
+    pickupAddress: string;
+    pickupDate: string;
+    pickupStartDate: number;
+
+    dropoffName: string;
+    dropoffAddress: string;
+    dropoffDate: string;
+
+    showPickupButton: boolean;
+}
+
+export interface OrderDetailModel {
+  id: string;
+  orderNumber: string;
+
+  driver: string;
+  manager: string;
+
+  route: string;
+
+  total: number;
+}
+
+export interface Props {
+    order: UpcomingOrder;
 }

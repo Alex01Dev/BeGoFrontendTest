@@ -1,61 +1,61 @@
 export const formatDate = (
-  timestamp: number
+    timestamp: number
 ) => {
-  return new Date(timestamp).toLocaleDateString(
-    "en-US",
-    {
-      day: "2-digit",
-      month: "2-digit",
-      year: "2-digit",
-    }
-  );
+    return new Date(timestamp).toLocaleDateString(
+        "en-US",
+        {
+            day: "2-digit",
+            month: "2-digit",
+            year: "2-digit",
+        }
+    );
 };
 
 export const formatTime = (
-  timestamp: number
+    timestamp: number
 ) => {
-  return new Date(timestamp).toLocaleTimeString(
-    "en-US",
-    {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-    }
-  );
+    return new Date(timestamp).toLocaleTimeString(
+        "en-US",
+        {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false,
+        }
+    );
 };
 
 export const truncateAddress = (
-  address: string,
-  maxLength = 35
+    address: string,
+    maxLength = 35
 ) => {
-  if (address.length <= maxLength) {
-    return address;
-  }
+    if (address.length <= maxLength) {
+        return address;
+    }
 
-  return `${address.slice(0, maxLength)}...`;
+    return `${address.slice(0, maxLength)}...`;
 };
 
 
 export const extractCityFromAddress = (
-  address: string
+    address: string
 ): string => {
-  if (!address) {
-    return "";
-  }
+    if (!address) {
+        return "";
+    }
 
-  const parts = address
-    .split(",")
-    .map((part) => part.trim());
+    const parts = address
+        .split(",")
+        .map((part) => part.trim());
 
-  if (parts.length < 3) {
-    return address;
-  }
+    if (parts.length < 3) {
+        return address;
+    }
 
-  const cityPart = parts[parts.length - 3];
+    const cityPart = parts[parts.length - 3];
 
-  const city = cityPart
-    .replace(/^\d+\s*/, "")
-    .trim();
+    const city = cityPart
+        .replace(/^\d+\s*/, "")
+        .trim();
 
-  return `${city}, MX`;
+    return `${city}, MX`;
 };

@@ -1,42 +1,30 @@
-import type { UpcomingOrder } from "../types/upcomingOrderTypes";
-
-export interface OrderDetailModel {
-  id: string;
-  orderNumber: string;
-
-  driver: string;
-  manager: string;
-
-  route: string;
-
-  total: number;
-}
+import type { UpcomingOrder, OrderDetailModel } from "../types/upcomingOrderTypes";
 
 export const mapOrderToDetail = (
-  order: UpcomingOrder
+    order: UpcomingOrder
 ): OrderDetailModel => {
-  const pickup = order.destinations?.[0];
-  const dropoff = order.destinations?.[1];
+    const pickup = order.destinations?.[0];
+    const dropoff = order.destinations?.[1];
 
-  return {
-    id: order._id,
-    orderNumber: order.order_number,
+    return {
+        id: order._id,
+        orderNumber: order.order_number,
 
-    driver:
-      typeof order.driver === "string"
-        ? "No driver assigned"
-        : order.driver.nickname,
+        driver:
+            typeof order.driver === "string"
+                ? "No driver assigned"
+                : order.driver.nickname,
 
-    manager:
-      typeof order.manager === "string"
-        ? "No manager assigned"
-        : order.manager.nickname,
+        manager:
+            typeof order.manager === "string"
+                ? "No manager assigned"
+                : order.manager.nickname,
 
-    route:
-      pickup && dropoff
-        ? `${pickup.address} → ${dropoff.address}`
-        : "No route assigned",
+        route:
+            pickup && dropoff
+                ? `${pickup.address} → ${dropoff.address}`
+                : "No route assigned",
 
-    total: order.pricing?.total ?? 0,
-  };
+        total: order.pricing?.total ?? 0,
+    };
 };
