@@ -1,0 +1,161 @@
+@use "../../styles/variables" as *;
+
+.order-card-wrapper {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.order-card__external-id {
+  margin: 0 0 12px 8px;
+
+  text-align: left;
+
+  color: $text-order;
+
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.orderNumber {
+  color: $text-primary;
+  font-weight: bold;
+}
+
+.order-card {
+  width: 100%;
+
+  background:
+    radial-gradient(
+      circle at 20% 50%,
+      rgba(94, 94, 94, 0.12),
+      transparent 45%
+    ),
+    linear-gradient(
+      180deg,
+      $card-bg-gradientt 0%
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.02),
+    0 10px 24px rgba(0, 0, 0, 0.418);
+}
+
+.order-card__status {
+  height: 42px;
+
+  padding: 0 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.order-card__type {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: $text-primary;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.order-card__current-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  color: $text-secondary;
+
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+}
+
+.status-dot.grey-dot-bg {
+  background: $circule-deactive;
+
+  box-shadow:
+    0 0 6px rgba(124, 124, 124, 0.5);
+}
+
+.status-dot.blue-dot-bg {
+  background: $circule-active;
+
+  box-shadow:
+    0 0 8px rgba(12, 125, 237, 0.8);
+}
+
+.order-card__content {
+  padding: 18px 16px 14px;
+}
+
+.order-card__footer {
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 14px;
+}
+
+.dual .pickup-btn {
+  flex: 1.45;
+}
+
+.dual .resume-btn {
+  flex: 1;
+}
+
+.single {
+  justify-content: flex-end;
+}
+
+.single .resume-btn {
+  width: 140px;
+}
+
+.resume-btn {
+  height: 44px;
+
+  border: none;
+
+  background: $yellow;
+
+  color: #111;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border-radius: 20px 0 18px 0;
+}
+
+@media (max-width: $mobile) {
+  .order-card__content {
+    padding: 16px 14px 12px;
+  }
+}

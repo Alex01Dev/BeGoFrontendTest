@@ -1,0 +1,145 @@
+@use "../../styles/variables" as *;
+
+.order-card__location {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    52px
+    minmax(0, 1fr)
+    64px;
+
+  column-gap: 14px;
+
+  align-items: start;
+}
+
+.dropoff {
+  margin-top: 16px;
+}
+
+.pickup::after {
+  content: "";
+
+  position: absolute;
+
+  left: 24px;
+  top: 42px;
+  bottom: -12px;
+
+  width: 2px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.1)
+  );
+
+  border-radius: 999px;
+}
+
+.location-icon {
+  width: 48px;
+  min-width: 48px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.location-icon--pickup svg {
+  width: 34px;
+  height: 34px;
+}
+
+.location-icon--dropoff svg {
+  width: 24px;
+  height: 24px;
+
+  transform: translateY(12px);
+}
+
+.location-info {
+  min-width: 0;
+
+  text-align: left;
+}
+
+.location-label {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: $pickup_dropoff;
+
+  font-size: 7px;
+  font-weight: 700;
+
+  letter-spacing: 1.4px;
+}
+
+.location-info h4 {
+  margin: 0;
+
+  color: $text-primary;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  line-height: 1.1;
+}
+
+.location-info p {
+  margin-top: 2px;
+
+  color: $location-info;
+
+  font-size: 12px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.location-date {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  padding-top: 2px;
+}
+
+.location-date span {
+  color: $location-date;
+
+  font-size: 10px;
+  font-weight: 500;
+
+  line-height: 1;
+}
+
+.location-date strong {
+  margin-top: 3px;
+
+  color: $text-primary;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  line-height: 1;
+}
+
+@media (max-width: $mobile) {
+  .location-info h4 {
+    font-size: 15px;
+  }
+
+  .location-info p {
+    font-size: 11px;
+  }
+
+  .location-date strong {
+    font-size: 15px;
+  }
+}

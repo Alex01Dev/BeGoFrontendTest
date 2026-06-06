@@ -1,5 +1,12 @@
+import AppRouter from "./routes/AppRouter";
+import { OrdersProvider } from "./context/OrdersProvider";
+
 function App() {
-  return <h1>BeGo Frontend Test</h1>;
+  return (
+    <OrdersProvider>
+      <AppRouter />
+    </OrdersProvider>
+  );
 }
 
 export default App;

@@ -1,0 +1,15 @@
+.orders-page {
+  padding: 16px;
+}
+
+@media (min-width: 768px) {
+  .orders-page {
+    padding: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .orders-page {
+    padding: 32px;
+  }
+}

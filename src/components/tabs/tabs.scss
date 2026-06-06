@@ -1,0 +1,53 @@
+@use "../../styles/variables" as *;
+
+.tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 2rem;
+
+  margin-bottom: 2rem;
+}
+
+.tabs__item {
+  position: relative;
+
+  background: transparent;
+  border: none;
+
+  color: $text-primary;
+
+  font-size: 1rem;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  padding-bottom: 0.75rem;
+
+  transition: all 0.2s ease;
+}
+
+.tabs__item:hover {
+  opacity: 0.8;
+}
+
+.tabs__item--active {
+  color: $yellow;
+}
+
+.tabs__item--active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 2px;
+
+  background: $yellow;
+
+  border-radius: 999px;
+}
