@@ -34,3 +34,28 @@ export const truncateAddress = (
 
   return `${address.slice(0, maxLength)}...`;
 };
+
+
+export const extractCityFromAddress = (
+  address: string
+): string => {
+  if (!address) {
+    return "";
+  }
+
+  const parts = address
+    .split(",")
+    .map((part) => part.trim());
+
+  if (parts.length < 3) {
+    return address;
+  }
+
+  const cityPart = parts[parts.length - 3];
+
+  const city = cityPart
+    .replace(/^\d+\s*/, "")
+    .trim();
+
+  return `${city}, MX`;
+};

@@ -4,6 +4,7 @@ import {
   formatDate,
   formatTime,
   truncateAddress,
+  extractCityFromAddress,
 } from "../utils/formatters";
 
 export interface OrderCardModel {
@@ -31,28 +32,48 @@ export const mapOrderToCard = (
 
   return {
     id: order._id,
+
     orderNumber: order.order_number,
 
-    type: "Delivery", // o lo derivas si tienes lógica real
+    type: "Delivery",
 
-    status: {
-      1: "Upcoming",
-      2: "Completed",
-      3: "Cancelled",
-    }[order.status] ?? "Unknown",
+    status:
+      {
+        1: "Upcoming",
+        2: "Completed",
+        3: "Cancelled",
+      }[order.status] ?? "Unknown",
 
-    pickupName: pickup?.nickname ?? "",
-    pickupAddress: truncateAddress(pickup?.address ?? ""),
+    pickupName: extractCityFromAddress(
+      pickup?.address ?? ""
+    ),
+
+    pickupAddress: truncateAddress(
+      pickup?.address ?? ""
+    ),
 
     pickupDate: pickup?.start_date
-      ? `${formatDate(pickup.start_date)} ${formatTime(pickup.start_date)}`
+      ? `${formatDate(
+          pickup.start_date
+        )} ${formatTime(
+          pickup.start_date
+        )}`
       : "",
 
-    dropoffName: dropoff?.nickname ?? "",
-    dropoffAddress: truncateAddress(dropoff?.address ?? ""),
+    dropoffName: extractCityFromAddress(
+      dropoff?.address ?? ""
+    ),
+
+    dropoffAddress: truncateAddress(
+      dropoff?.address ?? ""
+    ),
 
     dropoffDate: dropoff?.start_date
-      ? `${formatDate(dropoff.start_date)} ${formatTime(dropoff.start_date)}`
+      ? `${formatDate(
+          dropoff.start_date
+        )} ${formatTime(
+          dropoff.start_date
+        )}`
       : "",
 
     showPickupButton: order.status === 1,

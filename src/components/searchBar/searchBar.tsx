@@ -13,7 +13,7 @@ export default function SearchBar({ value, onChange }: Props) {
 
       <input
         type="text"
-        placeholder=""
+        placeholder="Search.."
         value={value}
         onChange={(e) => onChange(e.target.value)}
       />

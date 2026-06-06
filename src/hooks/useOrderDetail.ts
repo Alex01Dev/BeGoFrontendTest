@@ -10,7 +10,7 @@ export const useOrderDetail = (id: string) => {
   useEffect(() => {
     const loadOrder = async () => {
       try {
-        const data = await getUpcomingOrder(); // (luego se cambia a getById)
+        const data = await getUpcomingOrder();
 
         const found = data.find((o: UpcomingOrder) => o._id === id);
 
