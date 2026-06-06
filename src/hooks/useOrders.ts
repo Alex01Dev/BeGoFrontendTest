@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
 import { getOrders } from "../services/orderService";
-import type { Order } from "../types/orderTypes";
-
+import { useOrdersContext } from "../context/useOrdersContext";
 export const useOrders = () => {
-  const [orders, setOrders] = useState<Order[]>([]);
+  const { orders, setOrders } = useOrdersContext();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadOrders = async () => {
       try {
         const data = await getOrders();
+
         setOrders(data);
       } catch (error) {
-        console.error(error);
+        console.error("Error loading orders:", error);
       } finally {
         setLoading(false);
       }
     };
 
     loadOrders();
-  }, []);
+  }, [setOrders]);
 
   return {
     orders,

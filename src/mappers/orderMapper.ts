@@ -1,4 +1,4 @@
-import type { Order } from "../types/orderTypes";
+import type { UpcomingOrder } from "../types/upcomingOrderTypes";
 
 import {
   formatDate,
@@ -24,55 +24,37 @@ export interface OrderCardModel {
 }
 
 export const mapOrderToCard = (
-  order: Order
+  order: UpcomingOrder
 ): OrderCardModel => {
   const pickup = order.destinations?.[0];
   const dropoff = order.destinations?.[1];
 
   return {
     id: order._id,
-
     orderNumber: order.order_number,
 
-    type: order.type,
+    type: "Delivery", // o lo derivas si tienes lógica real
 
-    status: order.status_string,
+    status: {
+      1: "Upcoming",
+      2: "Completed",
+      3: "Cancelled",
+    }[order.status] ?? "Unknown",
 
-    pickupName:
-      pickup?.nickname ?? "",
+    pickupName: pickup?.nickname ?? "",
+    pickupAddress: truncateAddress(pickup?.address ?? ""),
 
-    pickupAddress:
-      truncateAddress(
-        pickup?.address ?? ""
-      ),
+    pickupDate: pickup?.start_date
+      ? `${formatDate(pickup.start_date)} ${formatTime(pickup.start_date)}`
+      : "",
 
-    pickupDate:
-      pickup?.start_date
-        ? `${formatDate(
-            pickup.start_date
-          )} ${formatTime(
-            pickup.start_date
-          )}`
-        : "",
+    dropoffName: dropoff?.nickname ?? "",
+    dropoffAddress: truncateAddress(dropoff?.address ?? ""),
 
-    dropoffName:
-      dropoff?.nickname ?? "",
+    dropoffDate: dropoff?.start_date
+      ? `${formatDate(dropoff.start_date)} ${formatTime(dropoff.start_date)}`
+      : "",
 
-    dropoffAddress:
-      truncateAddress(
-        dropoff?.address ?? ""
-      ),
-
-    dropoffDate:
-      dropoff?.start_date
-        ? `${formatDate(
-            dropoff.start_date
-          )} ${formatTime(
-            dropoff.start_date
-          )}`
-        : "",
-
-    showPickupButton:
-      order.status === 1,
+    showPickupButton: order.status === 1,
   };
 };
