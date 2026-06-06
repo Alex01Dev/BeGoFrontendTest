@@ -1,40 +1,124 @@
+@use "../../styles/variables" as *;
+
 .order-card {
-  background: #111827;
-  border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 16px;
-}
+  background: $card-bg;
 
-.order-card__header {
+  border-radius: 24px;
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  padding: 1.25rem;
+
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 16px;
+  flex-direction: column;
+
+  gap: 1.25rem;
 }
 
-.order-card__number {
-  color: white;
-  font-size: 18px;
-}
-
-.order-card__type {
-  color: #facc15;
-}
-
-.order-card__locations {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 16px;
-}
-
-.order-card__footer {
+.order-card__status {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.resume-btn {
+.order-card__type {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+
+  color: $text-primary;
+}
+
+.order-card__current-status {
+  color: $text-secondary;
+  font-size: .875rem;
+}
+
+.order-card__location {
+  display: flex;
+  gap: 1rem;
+}
+
+.location-label {
+  font-size: .75rem;
+  color: $text-secondary;
+}
+
+.order-card__location h4 {
+  color: $text-primary;
+  margin: .25rem 0;
+}
+
+.order-card__location span {
+  color: $text-secondary;
+
+  font-size: .875rem;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+.order-card__actions {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+
+.pickup-btn {
+  flex: 1;
+
+  min-height: 44px;
+
   border: none;
-  padding: 10px 18px;
-  border-radius: 20px;
+
+  border-radius: 999px;
+
+  background: $yellow;
+
+  font-weight: 600;
+
   cursor: pointer;
+}
+
+.resume-btn {
+  min-height: 44px;
+
+  padding: 0 1rem;
+
+  border: none;
+
+  border-radius: 999px;
+
+  background: $yellow;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.location-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.location-details small {
+  color: $text-secondary;
+  font-size: 12px;
+}
+
+@media (min-width: $tablet) {
+
+  .order-card {
+    padding: 1.5rem;
+  }
+
 }

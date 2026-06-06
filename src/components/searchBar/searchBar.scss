@@ -1,0 +1,31 @@
+@use "../../styles/variables" as *;
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  width: 100%;
+
+  padding-bottom: 12px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+  margin-bottom: 2rem;
+}
+
+.search-bar input {
+  flex: 1;
+
+  background: transparent;
+  border: none;
+  outline: none;
+
+  color: $text-primary;
+
+  font-size: 1rem;
+}
+
+.search-bar input::placeholder {
+  color: $text-secondary;
+}
