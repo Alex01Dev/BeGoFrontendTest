@@ -1,0 +1,63 @@
+@use "../../styles/variables" as *;
+
+.destination-panel {
+  margin-top: 20px;
+
+  border-radius: 16px;
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(255,255,255,.03),
+      transparent 50%
+    ),
+    rgba(255,255,255,.02);
+}
+
+.destination-panel__header {
+  width: 100%;
+
+  height: 54px;
+
+  border: none;
+
+  background: transparent;
+
+  padding: 0 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: $text-primary;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.destination-panel__content {
+  padding: 20px 16px;
+
+  border-top: 1px solid rgba(255,255,255,.05);
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+.destination-panel__content p {
+  margin: 0;
+
+  color: $text-primary;
+
+  font-size: 14px;
+
+  line-height: 1.4;
+}

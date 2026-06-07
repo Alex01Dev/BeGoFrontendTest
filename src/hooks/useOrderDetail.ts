@@ -1,23 +1,39 @@
 import { useEffect, useState } from "react";
-import { getUpcomingOrder } from "../services/orderService";
+
+import { getOrders } from "../services/orderService";
+
 import type { UpcomingOrder } from "../types/upcomingOrderTypes";
 
-export const useOrderDetail = (id: string) => {
-  const [order, setOrder] = useState<UpcomingOrder | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export const useOrderDetail = (
+  id: string
+) => {
+  const [order, setOrder] =
+    useState<UpcomingOrder | null>(null);
+
+  const [loading, setLoading] =
+    useState(true);
+
+  const [error, setError] =
+    useState<string | null>(null);
 
   useEffect(() => {
     const loadOrder = async () => {
       try {
-        const data = await getUpcomingOrder();
+        setLoading(true);
 
-        const found = data.find((o: UpcomingOrder) => o._id === id);
+        const orders =
+          await getOrders();
 
-        setOrder(found ?? null);
-      } catch (err) {
-        console.error(err);
-        setError("Error loading order");
+        const foundOrder =
+          orders.find(
+            (item) => item._id === id
+          ) ?? null;
+
+        setOrder(foundOrder);
+      } catch {
+        setError(
+          "Error loading order detail"
+        );
       } finally {
         setLoading(false);
       }
@@ -26,5 +42,9 @@ export const useOrderDetail = (id: string) => {
     loadOrder();
   }, [id]);
 
-  return { order, loading, error };
+  return {
+    order,
+    loading,
+    error,
+  };
 };

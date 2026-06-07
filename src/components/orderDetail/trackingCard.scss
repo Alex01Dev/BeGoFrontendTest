@@ -1,0 +1,213 @@
+@use "../../styles/variables" as *;
+
+.tracking-card {
+  position: relative;
+
+  margin-top: 60px;
+
+  overflow: visible;
+
+  border-radius: 22px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  background:
+    radial-gradient(
+      circle at center top,
+      rgba(255,255,255,.03),
+      transparent 60%
+    ),
+    rgba(255,255,255,.015);
+}
+
+.tracking-card__avatar-wrapper {
+  position: absolute;
+
+  top: -44px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 88px;
+  height: 88px;
+
+  border-radius: 50%;
+
+  background: #151b24;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.4);
+}
+
+.tracking-card__avatar {
+  width: 72px;
+  height: 72px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+}
+
+.tracking-card__body {
+  padding:
+    72px
+    18px
+    0;
+}
+
+.tracking-card__time {
+  margin: 10px 0 30px;
+
+  text-align: center;
+
+  color: $text-primary;
+
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.tracking-card__timeline {
+  padding-left: 6px;
+}
+
+.timeline-step {
+  display: flex;
+
+  gap: 14px;
+
+  min-height: 52px;
+}
+
+.timeline-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  flex-shrink: 0;
+}
+
+.timeline-dot {
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+
+  border: 2px solid rgba(255,255,255,.25);
+
+  background: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  color: #000;
+}
+
+.timeline-dot.completed {
+  background: $yellow;
+
+  border-color: $yellow;
+}
+
+.timeline-dot.active {
+  background: #ffffff;
+
+  border-color: #ffffff;
+
+  box-shadow:
+    0 0 10px rgba(255,255,255,.75);
+}
+
+.timeline-line {
+  width: 2px;
+
+  height: 34px;
+
+  background: rgba(255,255,255,.18);
+}
+
+.timeline-line.completed {
+  background: $yellow;
+}
+
+.timeline-label {
+  padding-top: 1px;
+
+  color: rgba(255,255,255,.32);
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.timeline-label--active {
+  color: $text-primary;
+}
+
+.tracking-card__button {
+  width: 100%;
+
+  height: 60px;
+
+  margin-top: 12px;
+
+  border: none;
+
+  border-top: 1px solid rgba(255,255,255,.06);
+
+  background: rgba(255,255,255,.03);
+
+  color: rgba(255,255,255,.25);
+
+  font-size: 16px;
+  font-weight: 700;
+
+  cursor: not-allowed;
+
+  transition: all .25s ease;
+}
+
+.tracking-card__button--active {
+  background: $yellow;
+
+  color: #111;
+
+  cursor: pointer;
+}
+
+@media (max-width: $tablet) {
+  .tracking-card__avatar-wrapper {
+    width: 82px;
+    height: 82px;
+  }
+
+  .tracking-card__avatar {
+    width: 66px;
+    height: 66px;
+  }
+}
+
+@media (max-width: $mobile) {
+  .tracking-card__body {
+    padding:
+      70px
+      14px
+      0;
+  }
+
+  .timeline-label {
+    font-size: 13px;
+  }
+
+  .tracking-card__button {
+    height: 56px;
+  }
+}

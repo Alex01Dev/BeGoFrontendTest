@@ -1,30 +1,47 @@
-import type { UpcomingOrder, OrderDetailModel } from "../types/upcomingOrderTypes";
+import type { UpcomingOrder } from "../types/upcomingOrderTypes";
+import type { OrderDetailModel } from "../types/orderTypes";
 
 export const mapOrderToDetail = (
-    order: UpcomingOrder
+  order: UpcomingOrder
 ): OrderDetailModel => {
-    const pickup = order.destinations?.[0];
-    const dropoff = order.destinations?.[1];
+  const pickup = order.destinations[0];
+  const dropoff = order.destinations[1];
 
-    return {
-        id: order._id,
-        orderNumber: order.order_number,
+  return {
+    id: order._id,
 
-        driver:
-            typeof order.driver === "string"
-                ? "No driver assigned"
-                : order.driver.nickname,
+    orderNumber: order.order_number,
 
-        manager:
-            typeof order.manager === "string"
-                ? "No manager assigned"
-                : order.manager.nickname,
+    status: order.status_string,
+    statusClass: order.status_class,
 
-        route:
-            pickup && dropoff
-                ? `${pickup.address} → ${dropoff.address}`
-                : "No route assigned",
+    pickupCity: pickup?.address.split(",")[0] ?? "",
+    pickupAddress: pickup?.address ?? "",
 
-        total: order.pricing?.total ?? 0,
-    };
+    dropoffCity: dropoff?.address.split(",")[0] ?? "",
+    dropoffAddress: dropoff?.address ?? "",
+
+    pickupDate: new Date(
+      pickup?.start_date ?? 0
+    ).toLocaleString(),
+
+    dropoffDate: new Date(
+      dropoff?.start_date ?? 0
+    ).toLocaleString(),
+
+    pickupTimestamp: pickup?.start_date ?? 0,
+    dropoffTimestamp: dropoff?.start_date ?? 0,
+
+    driverName:
+      order.driver?.nickname ?? "",
+
+    driverPhone:
+      order.driver?.telephone ?? "",
+
+    driverEmail:
+      order.driver?.email ?? "",
+
+    driverThumbnail:
+      order.driver?.thumbnail ?? null,
+  };
 };
