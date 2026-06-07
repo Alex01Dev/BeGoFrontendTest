@@ -6,11 +6,10 @@ import { useParams } from "react-router-dom";
 import { useOrderDetail } from "../../hooks/useOrderDetail";
 import { mapOrderToDetail } from "../../mappers/orderDetailMapper";
 
-import OrderTimeline from "../../components/orderDetail/orderTimeline";
-import TrackOrderButton from "../../components/orderDetail/trackOrderButton";
 import DestinationPanel from "../../components/orderDetail/destinationPanel";
 import RouteSummaryCard from "../../components/orderDetail/routeSummaryCard";
 import Header from "../../components/header/header";
+import TrackingCard from "../../components/orderDetail/trackingCard";
 
 export default function OrderDetailPage() {
   const { id } = useParams();
@@ -54,7 +53,7 @@ export default function OrderDetailPage() {
   return (
     <div className="order-detail-page">
       <Header />
-      
+
       <RouteSummaryCard
         orderNumber={detail.orderNumber}
         pickupCity={detail.pickupCity}
@@ -69,14 +68,9 @@ export default function OrderDetailPage() {
         }
       />
 
-      <OrderTimeline
-        currentStatus={
-          order.status
-        }
-      />
-
-      <TrackOrderButton
+      <TrackingCard
         status={order.status}
+        time="10:30 PM"
       />
 
       <DestinationPanel
