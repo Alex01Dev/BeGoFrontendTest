@@ -1,0 +1,252 @@
+@use "../../styles/variables" as *;
+
+.route-card {
+  width: 100%;
+
+  padding: 20px;
+
+  border-radius: 22px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  background:
+    radial-gradient(
+      circle at 20% 50%,
+      rgba(94, 94, 94, 0.12),
+      transparent 45%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(8, 12, 15, 0.8) 0%,
+      rgba(4, 7, 10, 0.95) 100%
+    );
+
+  overflow: hidden;
+}
+
+.route-card__header {
+  margin-bottom: 18px;
+
+  color: $text-primary;
+
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.route-stop {
+  display: grid;
+
+  grid-template-columns:
+    56px
+    minmax(0, 1fr);
+
+  column-gap: 16px;
+
+  align-items: center;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+
+  opacity: 0.45;
+}
+
+.route-stop.active {
+  opacity: 1;
+}
+
+.route-stop__icon--active {
+  background: $yellow;
+}
+
+.route-stop__icon--inactive {
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.route-stop__icon {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  transition: all 0.25s ease;
+}
+
+.route-stop.active .route-stop__icon {
+  background: $yellow;
+
+  box-shadow:
+    0 0 0 2px rgba(0, 0, 0, 0.85),
+    0 0 12px rgba(255, 238, 0, 0.3);
+}
+
+.route-stop__icon--dropoff {
+  background: rgba(255, 255, 255, 0.03);
+
+  border: 2px solid rgba(255, 255, 255, 0.08);
+}
+
+.route-stop__info {
+  min-width: 0;
+}
+
+.route-stop__label {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: $pickup_dropoff;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 1.2px;
+}
+
+.route-stop__info h4 {
+  margin: 0;
+
+  color: $text-primary;
+
+  font-size: 22px;
+  font-weight: 700;
+
+  line-height: 1.1;
+}
+
+.route-stop__info p {
+  margin-top: 4px;
+
+  color: $location-info;
+
+  font-size: 14px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.route-line {
+  width: 2px;
+
+  height: 62px;
+
+  margin-left: 20px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.75),
+    rgba(255, 255, 255, 0.08)
+  );
+
+  border-radius: 999px;
+}
+
+.route-stop__status {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  margin-top: 10px;
+
+  padding: 4px 10px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.route-stop__status::before {
+  content: "";
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+}
+
+.accepted {
+  background: rgba(12, 125, 237, 0.12);
+
+  color: $text-primary;
+}
+
+.accepted::before {
+  background: $circule-active;
+}
+
+.hold {
+  background: rgba(255, 255, 255, 0.05);
+
+  color: $text-primary;
+}
+
+.hold::before {
+  background: $circule-deactive;
+}
+
+
+@media (max-width: $tablet) {
+  .route-card {
+    padding: 18px;
+  }
+
+  .route-stop__info h4 {
+    font-size: 18px;
+  }
+
+  .route-stop__info p {
+    font-size: 13px;
+  }
+}
+
+
+@media (max-width: $mobile) {
+  .route-card {
+    padding: 16px;
+  }
+
+  .route-card__header {
+    font-size: 22px;
+  }
+
+  .route-stop {
+    grid-template-columns:
+      46px
+      minmax(0, 1fr);
+
+    column-gap: 12px;
+  }
+
+  .route-stop__icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .route-stop__info h4 {
+    font-size: 16px;
+  }
+
+  .route-stop__info p {
+    font-size: 12px;
+  }
+
+  .route-line {
+    height: 52px;
+
+    margin-left: 17px;
+  }
+}

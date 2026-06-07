@@ -6,10 +6,11 @@ import { useParams } from "react-router-dom";
 import { useOrderDetail } from "../../hooks/useOrderDetail";
 import { mapOrderToDetail } from "../../mappers/orderDetailMapper";
 
-import DestinationSwitch from "../../components/orderDetail/destinationSwitch";
 import OrderTimeline from "../../components/orderDetail/orderTimeline";
 import TrackOrderButton from "../../components/orderDetail/trackOrderButton";
 import DestinationPanel from "../../components/orderDetail/destinationPanel";
+import RouteSummaryCard from "../../components/orderDetail/routeSummaryCard";
+import Header from "../../components/header/header";
 
 export default function OrderDetailPage() {
   const { id } = useParams();
@@ -52,11 +53,14 @@ export default function OrderDetailPage() {
 
   return (
     <div className="order-detail-page">
-      <h1>
-        Order #{detail.orderNumber}
-      </h1>
-
-      <DestinationSwitch
+      <Header />
+      
+      <RouteSummaryCard
+        orderNumber={detail.orderNumber}
+        pickupCity={detail.pickupCity}
+        pickupAddress={detail.pickupAddress}
+        dropoffCity={detail.dropoffCity}
+        dropoffAddress={detail.dropoffAddress}
         activeDestination={
           activeDestination
         }
@@ -78,7 +82,7 @@ export default function OrderDetailPage() {
       <DestinationPanel
         title={
           activeDestination ===
-          "pickup"
+            "pickup"
             ? "Pickup Data"
             : "Dropoff Data"
         }
