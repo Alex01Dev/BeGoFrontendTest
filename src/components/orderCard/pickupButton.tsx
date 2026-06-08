@@ -1,4 +1,4 @@
-import "./PickupButton.scss";
+import "./pickupButton.scss";
 
 interface Props {
     canPickup: boolean;

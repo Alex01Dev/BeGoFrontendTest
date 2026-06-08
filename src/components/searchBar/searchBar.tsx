@@ -1,4 +1,4 @@
-import "./SearchBar.scss";
+import "./searchBar.scss";
 import SearchIcon from "../../assets/icons/SearchIcon";
 
 interface Props {

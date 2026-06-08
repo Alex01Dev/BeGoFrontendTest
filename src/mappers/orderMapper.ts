@@ -11,7 +11,7 @@ import {
 export const mapOrderToCard = (
     order: UpcomingOrder
 ): OrderCardModel => {
-    const pickup = order.destinations?.[0];
+    const pickup  = order.destinations?.[0];
     const dropoff = order.destinations?.[1];
 
     return {
@@ -32,15 +32,15 @@ export const mapOrderToCard = (
             pickup?.address ?? ""
         ),
 
-        pickupDate: pickup?.start_date
+        pickupDate: pickup?.startDate
             ? `${formatDate(
-                pickup.start_date
+                pickup.startDate
             )} ${formatTime(
-                pickup.start_date
+                pickup.startDate
             )}`
             : "",
 
-        pickupStartDate: pickup?.start_date ?? 0,
+        pickupStartDate: pickup?.startDate ?? 0,
 
         dropoffName: extractCityFromAddress(
             dropoff?.address ?? ""
@@ -50,11 +50,11 @@ export const mapOrderToCard = (
             dropoff?.address ?? ""
         ),
 
-        dropoffDate: dropoff?.start_date
+        dropoffDate: dropoff?.startDate
             ? `${formatDate(
-                dropoff.start_date
+                dropoff.startDate
             )} ${formatTime(
-                dropoff.start_date
+                dropoff.startDate
             )}`
             : "",
 

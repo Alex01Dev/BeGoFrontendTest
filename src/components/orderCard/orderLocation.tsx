@@ -1,4 +1,4 @@
-import "./OrderLocation.scss";
+import "./orderLocation.scss";
 import TrailerIcon from "../../assets/icons/TrailerIcon";
 import LocationIcon from "../../assets/icons/LocationIcon";
 
