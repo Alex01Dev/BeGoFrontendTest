@@ -33,8 +33,9 @@ export interface OrderDetailModel {
 
   orderNumber: string;
 
-  status: string;
+  referenceNumber: string;
 
+  status: string;
   statusClass: string;
 
   pickupCity: string;
@@ -44,7 +45,10 @@ export interface OrderDetailModel {
   dropoffAddress: string;
 
   pickupDate: string;
+  pickupTime: string;
+
   dropoffDate: string;
+  dropoffTime: string;
 
   pickupTimestamp: number;
   dropoffTimestamp: number;
@@ -52,5 +56,6 @@ export interface OrderDetailModel {
   driverName: string;
   driverPhone: string;
   driverEmail: string;
+
   driverThumbnail: string | null;
 }

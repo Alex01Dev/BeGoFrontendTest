@@ -19,10 +19,7 @@ export default function TrackingCard({
   time,
 }: Props) {
   const handleTrackOrder = () => {
-    if (status < 3) {
-      return;
-    }
-
+    if (status < 3) return;
     console.log("Track Order");
   };
 
@@ -45,11 +42,14 @@ export default function TrackingCard({
           {steps.map((step, index) => {
             const stepNumber = index + 1;
 
-            const completed =
-              status > stepNumber;
+            // completed: pasos anteriores al activo
+            const completed = status > stepNumber;
 
-            const active =
-              status === stepNumber;
+            // active: paso actual
+            const active = status === stepNumber;
+
+            // done: completed O active → ambos muestran ✓ amarillo
+            const done = completed || active;
 
             return (
               <div
@@ -58,41 +58,36 @@ export default function TrackingCard({
               >
                 <div className="timeline-marker">
                   <div
-                    className={`
-                      timeline-dot
-                      ${completed ? "completed" : ""}
-                      ${active ? "active" : ""}
-                    `}
+                    className={`timeline-dot ${done ? "done" : ""}`}
                   >
-                    {completed && "✓"}
+                    {done && (
+                      <svg
+                        width="10"
+                        height="8"
+                        viewBox="0 0 10 8"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1 3.5L3.8 6.5L9 1"
+                          stroke="#000"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    )}
                   </div>
 
-                  {index <
-                    steps.length - 1 && (
+                  {index < steps.length - 1 && (
                     <div
-                      className={`
-                        timeline-line
-                        ${
-                          status >
-                          stepNumber
-                            ? "completed"
-                            : ""
-                        }
-                      `}
+                      className={`timeline-line ${done ? "done" : ""}`}
                     />
                   )}
                 </div>
 
                 <span
-                  className={`
-                    timeline-label
-                    ${
-                      completed ||
-                      active
-                        ? "timeline-label--active"
-                        : ""
-                    }
-                  `}
+                  className={`timeline-label ${done ? "timeline-label--active" : ""}`}
                 >
                   {step}
                 </span>
@@ -103,14 +98,7 @@ export default function TrackingCard({
       </div>
 
       <button
-        className={`
-          tracking-card__button
-          ${
-            status >= 3
-              ? "tracking-card__button--active"
-              : ""
-          }
-        `}
+        className={`tracking-card__button ${status >= 3 ? "tracking-card__button--active" : ""}`}
         disabled={status < 3}
         onClick={handleTrackOrder}
       >
