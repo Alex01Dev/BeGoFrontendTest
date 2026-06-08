@@ -10,18 +10,11 @@ export const usePickupCountdown = (
   const [canPickup, setCanPickup] =
     useState(false);
 
-    // const FORCE_PICKUP_READY = true;
-
   useEffect(() => {
     if (!enabled) {
       return;
     }
 
-//     if (FORCE_PICKUP_READY) {
-//     setCanPickup(true);
-//     setRemainingTime("");
-//     return;
-//   }
 
     const updateCountdown = () => {
       const diff =

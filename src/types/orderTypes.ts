@@ -1,11 +1,13 @@
+import type { StatusStep } from "./upcomingOrderTypes";
+
 export interface Destination {
   address: string;
 
-  start_date: number;
-  end_date: number;
+  startDate: number;
+  endDate?: number;
 
-  nickname: string;
-  show_navigation: boolean;
+  nickname?: string;
+  show_navigation?: boolean;
 }
 
 export interface Order {
@@ -52,6 +54,9 @@ export interface OrderDetailModel {
 
   pickupTimestamp: number;
   dropoffTimestamp: number;
+
+  statusSteps: StatusStep[];
+  canTrack:    boolean;
 
   driverName: string;
   driverPhone: string;

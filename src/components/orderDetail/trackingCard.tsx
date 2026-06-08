@@ -2,24 +2,21 @@ import "./trackingCard.scss";
 
 import profileImage from "../../assets/images/profile.png";
 
+import type { StatusStep } from "../../types/upcomingOrderTypes";
+
 interface Props {
-  status: number;
-  time: string;
+  steps:    StatusStep[];
+  canTrack: boolean;
+  time:     string;
 }
 
-const steps = [
-  "Created Order",
-  "Accepted Order",
-  "Pickup set up by William",
-  "Pickup Completed",
-];
-
 export default function TrackingCard({
-  status,
+  steps,
+  canTrack,
   time,
 }: Props) {
   const handleTrackOrder = () => {
-    if (status < 3) return;
+    if (!canTrack) return;
     console.log("Track Order");
   };
 
@@ -40,20 +37,17 @@ export default function TrackingCard({
 
         <div className="tracking-card__timeline">
           {steps.map((step, index) => {
-            const stepNumber = index + 1;
+            const lastActiveIndex = steps
+              .map(s => s.active)
+              .lastIndexOf(true);
 
-            // completed: pasos anteriores al activo
-            const completed = status > stepNumber;
-
-            // active: paso actual
-            const active = status === stepNumber;
-
-            // done: completed O active → ambos muestran ✓ amarillo
-            const done = completed || active;
+            const isActive    = index === lastActiveIndex;
+            const isCompleted = step.active && !isActive;
+            const done        = isCompleted || isActive;
 
             return (
               <div
-                key={step}
+                key={`${step.status}-${index}`}
                 className="timeline-step"
               >
                 <div className="timeline-marker">
@@ -89,7 +83,7 @@ export default function TrackingCard({
                 <span
                   className={`timeline-label ${done ? "timeline-label--active" : ""}`}
                 >
-                  {step}
+                  {step.status}
                 </span>
               </div>
             );
@@ -98,8 +92,8 @@ export default function TrackingCard({
       </div>
 
       <button
-        className={`tracking-card__button ${status >= 3 ? "tracking-card__button--active" : ""}`}
-        disabled={status < 3}
+        className={`tracking-card__button ${canTrack ? "tracking-card__button--active" : ""}`}
+        disabled={!canTrack}
         onClick={handleTrackOrder}
       >
         Track Order

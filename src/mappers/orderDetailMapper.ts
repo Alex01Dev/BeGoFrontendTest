@@ -20,8 +20,19 @@ export const mapOrderToDetail = (
   const pickup  = order.destinations[0];
   const dropoff = order.destinations[1];
 
-  const pickupTs  = pickup?.start_date  ?? 0;
-  const dropoffTs = dropoff?.start_date ?? 0;
+  const pickupTs  = pickup?.startDate  ?? 0;
+  const dropoffTs = dropoff?.startDate ?? 0;
+
+  const canTrack = order.status >= 3;
+
+  const pickupSteps = (order.status_list?.pickup ?? []).map(step => ({
+    ...step,
+    active: canTrack ? true : step.active,
+  }));
+
+  const dropoffSteps = order.status_list?.dropoff ?? [];
+
+  const allSteps = [...pickupSteps, ...dropoffSteps];
 
   return {
     id: order._id,
@@ -48,6 +59,9 @@ export const mapOrderToDetail = (
 
     pickupTimestamp:  pickupTs,
     dropoffTimestamp: dropoffTs,
+
+    statusSteps: allSteps,
+    canTrack,
 
     driverName:      order.driver?.nickname  ?? "",
     driverPhone:     order.driver?.telephone ?? "",

@@ -20,24 +20,24 @@ export default function OrderDetailPage() {
   const { order, loading, error } = useOrderDetail(id!);
 
   if (loading) return <h1>Loading...</h1>;
-  if (error)   return <h1>{error}</h1>;
-  if (!order)  return <h1>No order found</h1>;
+  if (error) return <h1>{error}</h1>;
+  if (!order) return <h1>No order found</h1>;
 
-  const detail = mapOrderToDetail(order);
+  const forceCanTrack =
+    import.meta.env.VITE_FORCE_CAN_TRACK === "true";
+const forceStatus = import.meta.env.VITE_FORCE_STATUS
+  ? Number(import.meta.env.VITE_FORCE_STATUS)
+  : null;
 
-  const isPickup = activeDestination === "pickup";
+const detail = mapOrderToDetail(
+  forceStatus !== null
+    ? { ...order, status: forceStatus }
+    : order
+);  const isPickup = activeDestination === "pickup";
 
-  const address = isPickup
-    ? detail.pickupAddress
-    : detail.dropoffAddress;
-
-  const date = isPickup
-    ? detail.pickupDate
-    : detail.dropoffDate;
-
-  const time = isPickup
-    ? detail.pickupTime
-    : detail.dropoffTime;
+  const address = isPickup ? detail.pickupAddress : detail.dropoffAddress;
+  const date = isPickup ? detail.pickupDate : detail.dropoffDate;
+  const time = isPickup ? detail.pickupTime : detail.dropoffTime;
 
   return (
     <div className="order-detail-page">
@@ -53,7 +53,8 @@ export default function OrderDetailPage() {
       />
 
       <TrackingCard
-        status={order.status}
+        steps={detail.statusSteps}
+        canTrack={forceCanTrack || detail.canTrack}
         time="10:30 PM"
       />
 
