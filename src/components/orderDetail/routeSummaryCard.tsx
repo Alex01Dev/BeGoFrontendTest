@@ -3,13 +3,15 @@ import "./RouteSummaryCard.scss";
 import TrailerIcon from "../../assets/icons/TrailerIcon";
 import LocationIcon from "../../assets/icons/LocationIcon";
 
+import {
+  extractCityFromAddress,
+} from "../../utils/formatters";
+
 interface Props {
   orderNumber: string;
+  referenceNumber: string;
 
-  pickupCity: string;
   pickupAddress: string;
-
-  dropoffCity: string;
   dropoffAddress: string;
 
   activeDestination:
@@ -25,109 +27,132 @@ interface Props {
 
 export default function RouteSummaryCard({
   orderNumber,
-  pickupCity,
+  referenceNumber,
   pickupAddress,
-  dropoffCity,
   dropoffAddress,
   activeDestination,
   onChange,
 }: Props) {
+  const pickupCity =
+    extractCityFromAddress(
+      pickupAddress
+    );
+
+  const dropoffCity =
+    extractCityFromAddress(
+      dropoffAddress
+    );
+
   return (
     <div className="route-card">
       <div className="route-card__header">
-        <span>
-          Order #{orderNumber}
+        <span className="route-card__reference">
+          Referencia {referenceNumber}
         </span>
+
+        <h2>
+          Order #{orderNumber}
+        </h2>
       </div>
 
-      <div
-        className={`route-stop ${
-          activeDestination === "pickup"
-            ? "active"
-            : ""
-        }`}
-        onClick={() =>
-          onChange("pickup")
-        }
-      >
-        <div
-          className={`route-stop__icon ${
-            activeDestination ===
-            "pickup"
-              ? "route-stop__icon--active"
-              : ""
-          }`}
-        >
-          <TrailerIcon
-            color={
-              activeDestination ===
-              "pickup"
-                ? "#000000"
-                : "#FFFFFF"
+      <div className="route-layout">
+
+        <div className="route-layout__left">
+
+          <div
+            className={`route-stop__icon ${
+              activeDestination === "pickup"
+                ? "active"
+                : ""
+            }`}
+            onClick={() =>
+              onChange("pickup")
             }
-            size={22}
-          />
-        </div>
-
-        <div className="route-stop__info">
-          <span className="route-stop__label">
-            PICKUP
-          </span>
-
-          <h4>{pickupCity}</h4>
-
-          <p>{pickupAddress}</p>
-
-          <div className="route-stop__status accepted">
-            Accepted
+          >
+            <TrailerIcon
+              color={
+                activeDestination ===
+                "pickup"
+                  ? "#000"
+                  : "#FEFF00"
+              }
+            />
           </div>
-        </div>
-      </div>
 
-      <div className="route-line" />
+          <div className="route-line" />
 
-      <div
-        className={`route-stop ${
-          activeDestination ===
-          "dropoff"
-            ? "active"
-            : ""
-        }`}
-        onClick={() =>
-          onChange("dropoff")
-        }
-      >
-        <div
-          className={`route-stop__icon ${
-            activeDestination ===
-            "dropoff"
-              ? "route-stop__icon--active"
-              : "route-stop__icon--inactive"
-          }`}
-        >
-          <LocationIcon
-            color={
+          <div
+            className={`route-stop__icon route-stop__icon--dropoff ${
               activeDestination ===
               "dropoff"
-                ? "#000000"
-                : "#FEFF00"
+                ? "active"
+                : ""
+            }`}
+            onClick={() =>
+              onChange("dropoff")
             }
-            size={24}
-          />
+          >
+            <LocationIcon
+              color={
+                activeDestination ===
+                "dropoff"
+                  ? "#000"
+                  : "#FEFF00"
+              }
+            />
+          </div>
         </div>
 
-        <div className="route-stop__info">
-          <span className="route-stop__label">
-            DROPOFF
-          </span>
+        <div className="route-layout__right">
 
-          <h4>{dropoffCity}</h4>
+          <div
+            className={`route-stop-content ${
+              activeDestination ===
+              "pickup"
+                ? "active"
+                : ""
+            }`}
+            onClick={() =>
+              onChange("pickup")
+            }
+          >
+            <span className="route-stop__label">
+              PICKUP
+            </span>
 
-          <p>{dropoffAddress}</p>
+            <h4>{pickupCity}</h4>
 
-          <div className="route-stop__status hold">
-            On hold
+            <p>{pickupAddress}</p>
+
+            <div className="route-stop__status accepted">
+              Accepted
+            </div>
           </div>
+
+          <div
+            className={`route-stop-content route-stop-content--dropoff ${
+              activeDestination ===
+              "dropoff"
+                ? "active"
+                : ""
+            }`}
+            onClick={() =>
+              onChange("dropoff")
+            }
+          >
+            <span className="route-stop__label">
+              DROPOFF
+            </span>
+
+            <h4>{dropoffCity}</h4>
+
+            <p>{dropoffAddress}</p>
+
+            <div className="route-stop__status hold">
+              On hold
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

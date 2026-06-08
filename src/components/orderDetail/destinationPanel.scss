@@ -1,21 +1,17 @@
 @use "../../styles/variables" as *;
 
 .destination-panel {
-  margin-top: 20px;
-
   border-radius: 16px;
 
-  border: 1px solid rgba(255,255,255,.08);
-
-  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 
   background:
     radial-gradient(
       circle at top left,
-      rgba(255,255,255,.03),
+      rgba(255, 255, 255, 0.03),
       transparent 50%
     ),
-    rgba(255,255,255,.02);
+    rgba(255, 255, 255, 0.02);
 }
 
 .destination-panel__header {
@@ -27,29 +23,57 @@
 
   background: transparent;
 
-  padding: 0 16px;
+  padding: 0 18px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
+  cursor: pointer;
+
+  border-radius: 16px;
+
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+}
+
+.destination-panel--expanded
+  .destination-panel__header {
+  border-radius: 16px 16px 0 0;
+}
+
+.destination-panel__title {
   color: $text-primary;
 
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
 
-  cursor: pointer;
+  letter-spacing: 0.2px;
+}
+
+.destination-panel__arrow {
+  color: $yellow;
+
+  font-size: 18px;
+
+  line-height: 1;
+
+  display: flex;
+  align-items: center;
+
+  transition: transform 0.2s ease;
 }
 
 .destination-panel__content {
-  padding: 20px 16px;
-
-  border-top: 1px solid rgba(255,255,255,.05);
+  padding: 4px 18px 22px;
 
   display: flex;
   flex-direction: column;
 
-  gap: 18px;
+  gap: 14px;
 }
 
 .destination-panel__content p {
@@ -58,6 +82,49 @@
   color: $text-primary;
 
   font-size: 14px;
+  font-weight: 500;
 
-  line-height: 1.4;
+  line-height: 1.45;
+
+  text-align: left;
+}
+
+.destination-panel__address {
+  font-weight: 600 !important;
+
+  line-height: 1.5 !important;
+}
+
+.destination-panel__datetime {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.destination-panel__dot {
+  color: $yellow;
+
+  font-size: 16px;
+
+  line-height: 1;
+}
+
+
+@media (max-width: $mobile) {
+  .destination-panel__header {
+    height: 50px;
+
+    padding: 0 14px;
+  }
+
+  .destination-panel__content {
+    padding: 4px 14px 18px;
+
+    gap: 12px;
+  }
+
+  .destination-panel__title {
+    font-size: 14px;
+  }
 }

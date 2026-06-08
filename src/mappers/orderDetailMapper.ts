@@ -1,47 +1,71 @@
 import type { UpcomingOrder } from "../types/upcomingOrderTypes";
 import type { OrderDetailModel } from "../types/orderTypes";
 
+const formatDate = (timestamp: number): string =>
+  new Date(timestamp).toLocaleDateString("es-MX", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+const formatTime = (timestamp: number): string =>
+  new Date(timestamp).toLocaleTimeString("es-MX", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
 export const mapOrderToDetail = (
   order: UpcomingOrder
 ): OrderDetailModel => {
-  const pickup = order.destinations[0];
+  const pickup  = order.destinations[0];
   const dropoff = order.destinations[1];
+
+  const pickupTs  = pickup?.startDate  ?? 0;
+  const dropoffTs = dropoff?.startDate ?? 0;
+
+  const canTrack = order.status >= 3;
+
+  const pickupSteps = (order.status_list?.pickup ?? []).map(step => ({
+    ...step,
+    active: canTrack ? true : step.active,
+  }));
+
+  const dropoffSteps = order.status_list?.dropoff ?? [];
+
+  const allSteps = [...pickupSteps, ...dropoffSteps];
 
   return {
     id: order._id,
 
     orderNumber: order.order_number,
 
-    status: order.status_string,
+    status:      order.status_string,
     statusClass: order.status_class,
 
-    pickupCity: pickup?.address.split(",")[0] ?? "",
-    pickupAddress: pickup?.address ?? "",
+    referenceNumber:
+      order.reference_number ?? "A1180",
 
-    dropoffCity: dropoff?.address.split(",")[0] ?? "",
-    dropoffAddress: dropoff?.address ?? "",
+    pickupCity:    pickup?.address.split(",")[0]  ?? "",
+    pickupAddress: pickup?.address                ?? "",
 
-    pickupDate: new Date(
-      pickup?.start_date ?? 0
-    ).toLocaleString(),
+    dropoffCity:    dropoff?.address.split(",")[0] ?? "",
+    dropoffAddress: dropoff?.address               ?? "",
 
-    dropoffDate: new Date(
-      dropoff?.start_date ?? 0
-    ).toLocaleString(),
+    pickupDate: formatDate(pickupTs),
+    pickupTime: formatTime(pickupTs),
 
-    pickupTimestamp: pickup?.start_date ?? 0,
-    dropoffTimestamp: dropoff?.start_date ?? 0,
+    dropoffDate: formatDate(dropoffTs),
+    dropoffTime: formatTime(dropoffTs),
 
-    driverName:
-      order.driver?.nickname ?? "",
+    pickupTimestamp:  pickupTs,
+    dropoffTimestamp: dropoffTs,
 
-    driverPhone:
-      order.driver?.telephone ?? "",
+    statusSteps: allSteps,
+    canTrack,
 
-    driverEmail:
-      order.driver?.email ?? "",
-
-    driverThumbnail:
-      order.driver?.thumbnail ?? null,
+    driverName:      order.driver?.nickname  ?? "",
+    driverPhone:     order.driver?.telephone ?? "",
+    driverEmail:     order.driver?.email     ?? "",
+    driverThumbnail: order.driver?.thumbnail ?? null,
   };
 };

@@ -1,6 +1,17 @@
 import type { Destination }
 from "./orderTypes";
 
+export interface StatusStep {
+  active: boolean;
+  status: string;
+}
+
+export interface StatusList {
+  pickup:  StatusStep[];
+  dropoff: StatusStep[];
+}
+
+
 export interface UpcomingOrder {
   _id: string;
 
@@ -64,30 +75,32 @@ export interface UpcomingOrder {
 
   destinations: Destination[];
 
+  status_list: StatusList;
+
   start_date: number;
 
   end_date: number;
 }
 
 export interface OrderCardModel {
-    id: string;
-    orderNumber: string;
-    type: string;
-    status: string;
-    statusClass: string;
+  id: string;
+  orderNumber: string;
+  type: string;
+  status: string;
+  statusClass: string;
 
-    pickupName: string;
-    pickupAddress: string;
-    pickupDate: string;
-    pickupStartDate: number;
+  pickupName: string;
+  pickupAddress: string;
+  pickupDate: string;
+  pickupStartDate: number;
 
-    dropoffName: string;
-    dropoffAddress: string;
-    dropoffDate: string;
+  dropoffName: string;
+  dropoffAddress: string;
+  dropoffDate: string;
 
-    showPickupButton: boolean;
+  showPickupButton: boolean;
 }
 
 export interface Props {
-    order: UpcomingOrder;
+  order: UpcomingOrder;
 }

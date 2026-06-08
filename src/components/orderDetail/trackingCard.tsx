@@ -2,27 +2,21 @@ import "./trackingCard.scss";
 
 import profileImage from "../../assets/images/profile.png";
 
+import type { StatusStep } from "../../types/upcomingOrderTypes";
+
 interface Props {
-  status: number;
-  time: string;
+  steps:    StatusStep[];
+  canTrack: boolean;
+  time:     string;
 }
 
-const steps = [
-  "Created Order",
-  "Accepted Order",
-  "Pickup set up by William",
-  "Pickup Completed",
-];
-
 export default function TrackingCard({
-  status,
+  steps,
+  canTrack,
   time,
 }: Props) {
   const handleTrackOrder = () => {
-    if (status < 3) {
-      return;
-    }
-
+    if (!canTrack) return;
     console.log("Track Order");
   };
 
@@ -43,58 +37,53 @@ export default function TrackingCard({
 
         <div className="tracking-card__timeline">
           {steps.map((step, index) => {
-            const stepNumber = index + 1;
+            const lastActiveIndex = steps
+              .map(s => s.active)
+              .lastIndexOf(true);
 
-            const completed =
-              status > stepNumber;
-
-            const active =
-              status === stepNumber;
+            const isActive    = index === lastActiveIndex;
+            const isCompleted = step.active && !isActive;
+            const done        = isCompleted || isActive;
 
             return (
               <div
-                key={step}
+                key={`${step.status}-${index}`}
                 className="timeline-step"
               >
                 <div className="timeline-marker">
                   <div
-                    className={`
-                      timeline-dot
-                      ${completed ? "completed" : ""}
-                      ${active ? "active" : ""}
-                    `}
+                    className={`timeline-dot ${done ? "done" : ""}`}
                   >
-                    {completed && "✓"}
+                    {done && (
+                      <svg
+                        width="10"
+                        height="8"
+                        viewBox="0 0 10 8"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1 3.5L3.8 6.5L9 1"
+                          stroke="#000"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    )}
                   </div>
 
-                  {index <
-                    steps.length - 1 && (
+                  {index < steps.length - 1 && (
                     <div
-                      className={`
-                        timeline-line
-                        ${
-                          status >
-                          stepNumber
-                            ? "completed"
-                            : ""
-                        }
-                      `}
+                      className={`timeline-line ${done ? "done" : ""}`}
                     />
                   )}
                 </div>
 
                 <span
-                  className={`
-                    timeline-label
-                    ${
-                      completed ||
-                      active
-                        ? "timeline-label--active"
-                        : ""
-                    }
-                  `}
+                  className={`timeline-label ${done ? "timeline-label--active" : ""}`}
                 >
-                  {step}
+                  {step.status}
                 </span>
               </div>
             );
@@ -103,15 +92,8 @@ export default function TrackingCard({
       </div>
 
       <button
-        className={`
-          tracking-card__button
-          ${
-            status >= 3
-              ? "tracking-card__button--active"
-              : ""
-          }
-        `}
-        disabled={status < 3}
+        className={`tracking-card__button ${canTrack ? "tracking-card__button--active" : ""}`}
+        disabled={!canTrack}
         onClick={handleTrackOrder}
       >
         Track Order

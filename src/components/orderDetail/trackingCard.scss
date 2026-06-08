@@ -14,10 +14,10 @@
   background:
     radial-gradient(
       circle at center top,
-      rgba(255,255,255,.03),
+      rgba(255, 255, 255, 0.03),
       transparent 60%
     ),
-    rgba(255,255,255,.015);
+    rgba(255, 255, 255, 0.015);
 }
 
 .tracking-card__avatar-wrapper {
@@ -39,10 +39,9 @@
   align-items: center;
   justify-content: center;
 
-  border: 1px solid rgba(255,255,255,.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 
-  box-shadow:
-    0 10px 24px rgba(0,0,0,.4);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
 }
 
 .tracking-card__avatar {
@@ -55,10 +54,7 @@
 }
 
 .tracking-card__body {
-  padding:
-    72px
-    18px
-    0;
+  padding: 72px 18px 0;
 }
 
 .tracking-card__time {
@@ -93,12 +89,12 @@
 }
 
 .timeline-dot {
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
 
   border-radius: 50%;
 
-  border: 2px solid rgba(255,255,255,.25);
+  border: 2px solid rgba(255, 255, 255, 0.25);
 
   background: transparent;
 
@@ -106,43 +102,40 @@
   align-items: center;
   justify-content: center;
 
-  font-size: 10px;
-  font-weight: 700;
-
-  color: #000;
+  flex-shrink: 0;
 }
 
-.timeline-dot.completed {
+.timeline-dot.done {
   background: $yellow;
 
   border-color: $yellow;
-}
 
-.timeline-dot.active {
-  background: #ffffff;
-
-  border-color: #ffffff;
-
-  box-shadow:
-    0 0 10px rgba(255,255,255,.75);
+  box-shadow: 0 0 8px rgba(255, 238, 0, 0.35);
 }
 
 .timeline-line {
   width: 2px;
 
-  height: 34px;
+  flex: 1;
 
-  background: rgba(255,255,255,.18);
+  min-height: 16px;
+
+  margin-top: 4px;
+  margin-bottom: 4px;
+
+  background: rgba(255, 255, 255, 0.18);
+
+  border-radius: 999px;
 }
 
-.timeline-line.completed {
+.timeline-line.done {
   background: $yellow;
 }
 
 .timeline-label {
-  padding-top: 1px;
+  padding-top: 3px;
 
-  color: rgba(255,255,255,.32);
+  color: rgba(255, 255, 255, 0.32);
 
   font-size: 14px;
   font-weight: 500;
@@ -161,18 +154,21 @@
 
   border: none;
 
-  border-top: 1px solid rgba(255,255,255,.06);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 
-  background: rgba(255,255,255,.03);
+  background: rgba(255, 255, 255, 0.03);
 
-  color: rgba(255,255,255,.25);
+  color: rgba(255, 255, 255, 0.25);
 
   font-size: 16px;
   font-weight: 700;
 
   cursor: not-allowed;
 
-  transition: all .25s ease;
+  transition: all 0.25s ease;
+
+  border-bottom-left-radius: 22px;
+  border-bottom-right-radius: 22px;
 }
 
 .tracking-card__button--active {
@@ -181,6 +177,14 @@
   color: #111;
 
   cursor: pointer;
+
+  &:hover {
+    background: #f0e000;
+  }
+
+  &:active {
+    background: #d9ca00;
+  }
 }
 
 @media (max-width: $tablet) {
@@ -197,10 +201,7 @@
 
 @media (max-width: $mobile) {
   .tracking-card__body {
-    padding:
-      70px
-      14px
-      0;
+    padding: 70px 14px 0;
   }
 
   .timeline-label {
