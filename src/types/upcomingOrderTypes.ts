@@ -92,11 +92,13 @@ export interface OrderCardModel {
   pickupName: string;
   pickupAddress: string;
   pickupDate: string;
+  pickupTime: string;
   pickupStartDate: number;
 
   dropoffName: string;
   dropoffAddress: string;
   dropoffDate: string;
+  dropoffTime: string;
 
   showPickupButton: boolean;
 }

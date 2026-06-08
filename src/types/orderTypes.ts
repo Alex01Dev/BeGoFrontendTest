@@ -3,8 +3,11 @@ import type { StatusStep } from "./upcomingOrderTypes";
 export interface Destination {
   address: string;
 
-  startDate: number;
+  startDate?: number;
   endDate?: number;
+
+  start_date?: number;
+  end_date?: number;
 
   nickname?: string;
   show_navigation?: boolean;

@@ -33,23 +33,6 @@ export default function OrderCard({
         card.showPickupButton
     );
 
-    const splitDateTime = (
-        value: string
-    ) => {
-        const [date = "", time = ""] =
-            value.split(" ");
-
-        return { date, time };
-    };
-
-    const pickup = splitDateTime(
-        card.pickupDate
-    );
-
-    const dropoff = splitDateTime(
-        card.dropoffDate
-    );
-
     const handlePickup = () => {
         console.log("Navegar");
     };
@@ -82,43 +65,36 @@ export default function OrderCard({
                         type="PICKUP"
                         city={card.pickupName}
                         address={card.pickupAddress}
-                        date={pickup.date}
-                        time={pickup.time}
+                        date={card.pickupDate}
+                        time={card.pickupTime}
                     />
 
                     <OrderLocation
                         type="DROPOFF"
                         city={card.dropoffName}
                         address={card.dropoffAddress}
-                        date={dropoff.date}
-                        time={dropoff.time}
+                        date={card.dropoffDate}
+                        time={card.dropoffTime}
                     />
                 </section>
 
                 <footer
-                    className={`order-card__footer ${card.showPickupButton
-                            ? "dual"
-                            : "single"
-                        }`}
+                    className={`order-card__footer ${
+                        card.showPickupButton ? "dual" : "single"
+                    }`}
                 >
                     {card.showPickupButton && (
                         <PickupButton
                             canPickup={canPickup}
-                            remainingTime={
-                                remainingTime
-                            }
-                            onPickup={
-                                handlePickup
-                            }
+                            remainingTime={remainingTime}
+                            onPickup={handlePickup}
                         />
                     )}
 
                     <button
                         className="resume-btn"
                         onClick={() =>
-                            navigate(
-                                `/orders/${card.id}`
-                            )
+                            navigate(`/orders/${card.id}`)
                         }
                     >
                         Resume

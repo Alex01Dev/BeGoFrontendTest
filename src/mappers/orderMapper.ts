@@ -7,12 +7,18 @@ import {
     extractCityFromAddress,
 } from "../utils/formatters";
 
+const getTimestamp = (
+    dest: { startDate?: number; start_date?: number } | undefined
+): number => dest?.startDate ?? dest?.start_date ?? 0;
 
 export const mapOrderToCard = (
     order: UpcomingOrder
 ): OrderCardModel => {
     const pickup  = order.destinations?.[0];
     const dropoff = order.destinations?.[1];
+
+    const pickupTs  = getTimestamp(pickup);
+    const dropoffTs = getTimestamp(dropoff);
 
     return {
         id: order._id,
@@ -32,15 +38,15 @@ export const mapOrderToCard = (
             pickup?.address ?? ""
         ),
 
-        pickupDate: pickup?.startDate
-            ? `${formatDate(
-                pickup.startDate
-            )} ${formatTime(
-                pickup.startDate
-            )}`
+        pickupDate: pickupTs
+            ? formatDate(pickupTs)
             : "",
 
-        pickupStartDate: pickup?.startDate ?? 0,
+        pickupTime: pickupTs
+            ? formatTime(pickupTs)
+            : "",
+
+        pickupStartDate: pickupTs,
 
         dropoffName: extractCityFromAddress(
             dropoff?.address ?? ""
@@ -50,12 +56,12 @@ export const mapOrderToCard = (
             dropoff?.address ?? ""
         ),
 
-        dropoffDate: dropoff?.startDate
-            ? `${formatDate(
-                dropoff.startDate
-            )} ${formatTime(
-                dropoff.startDate
-            )}`
+        dropoffDate: dropoffTs
+            ? formatDate(dropoffTs)
+            : "",
+
+        dropoffTime: dropoffTs
+            ? formatTime(dropoffTs)
             : "",
 
         showPickupButton:
