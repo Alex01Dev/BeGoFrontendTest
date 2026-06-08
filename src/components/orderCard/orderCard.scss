@@ -7,11 +7,8 @@
 
 .order-card__external-id {
   margin: 0 0 12px 8px;
-
   text-align: left;
-
   color: $text-order;
-
   font-size: 16px;
   font-weight: 600;
 }
@@ -23,7 +20,6 @@
 
 .order-card {
   width: 100%;
-
   background:
     radial-gradient(
       circle at 20% 50%,
@@ -34,16 +30,11 @@
       180deg,
       $card-bg-gradientt 0%
     );
-
   border: 1px solid rgba(255, 255, 255, 0.14);
-
   border-radius: 18px;
-
   overflow: hidden;
-
   display: flex;
   flex-direction: column;
-
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.02),
     0 10px 24px rgba(0, 0, 0, 0.418);
@@ -51,13 +42,10 @@
 
 .order-card__status {
   height: 42px;
-
   padding: 0 14px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -65,9 +53,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-
   color: $text-primary;
-
   font-size: 14px;
   font-weight: 600;
 }
@@ -76,9 +62,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-
   color: $text-secondary;
-
   font-size: 11px;
   font-weight: 500;
 }
@@ -86,22 +70,18 @@
 .status-dot {
   width: 7px;
   height: 7px;
-
   border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .status-dot.grey-dot-bg {
   background: $circule-deactive;
-
-  box-shadow:
-    0 0 6px rgba(124, 124, 124, 0.5);
+  box-shadow: 0 0 6px rgba(124, 124, 124, 0.5);
 }
 
 .status-dot.blue-dot-bg {
   background: $circule-active;
-
-  box-shadow:
-    0 0 8px rgba(12, 125, 237, 0.8);
+  box-shadow: 0 0 8px rgba(12, 125, 237, 0.8);
 }
 
 .order-card__content {
@@ -110,9 +90,7 @@
 
 .order-card__footer {
   display: flex;
-
   gap: 10px;
-
   margin-top: 14px;
 }
 
@@ -134,28 +112,180 @@
 
 .resume-btn {
   height: 44px;
-
   border: none;
-
   background: $yellow;
-
   color: #111;
-
   font-size: 14px;
   font-weight: 700;
-
   cursor: pointer;
-
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-
   border-radius: 20px 0 18px 0;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #e6d600;
+  }
+
+  &:active {
+    background: #d4c400;
+  }
+}
+
+@media (min-width: $desktop) {
+  .order-card-wrapper {
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .order-card__external-id {
+    font-size: 17px;
+  }
+
+  .order-card__type {
+    font-size: 15px;
+  }
+
+  .order-card__content {
+    padding: 22px 20px 16px;
+  }
+
+  .resume-btn {
+    height: 48px;
+    font-size: 15px;
+  }
+
+  .single .resume-btn {
+    width: 160px;
+  }
+}
+
+@media (min-width: $laptop) and (max-width: #{$desktop - 1px}) {
+  .order-card-wrapper {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .order-card__content {
+    padding: 20px 18px 14px;
+  }
+
+  .resume-btn {
+    height: 46px;
+  }
+
+  .single .resume-btn {
+    width: 150px;
+  }
+}
+
+@media (min-width: $tablet) and (max-width: #{$laptop - 1px}) {
+  .order-card__external-id {
+    font-size: 15px;
+  }
+
+  .order-card__content {
+    padding: 16px 15px 12px;
+  }
+
+  .order-card__status {
+    height: 40px;
+  }
+
+  .resume-btn {
+    height: 42px;
+    font-size: 13px;
+  }
+
+  .single .resume-btn {
+    width: 130px;
+  }
+}
+
+@media (max-width: #{$tablet - 1px}) {
+  .order-card__external-id {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
+  .order-card__content {
+    padding: 16px 14px 12px;
+  }
+
+  .order-card__status {
+    height: 40px;
+    padding: 0 12px;
+  }
+
+  .order-card__type {
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .order-card__current-status {
+    font-size: 10px;
+  }
+
+  .resume-btn {
+    height: 42px;
+    font-size: 13px;
+  }
+
+  .single .resume-btn {
+    width: 130px;
+  }
 }
 
 @media (max-width: $mobile) {
+  .order-card-wrapper {
+    margin-top: 16px;
+  }
+
+  .order-card__external-id {
+    font-size: 14px;
+    margin-bottom: 8px;
+    margin-left: 4px;
+  }
+
+  .order-card {
+    border-radius: 14px;
+  }
+
+  .order-card__status {
+    height: 38px;
+    padding: 0 10px;
+  }
+
+  .order-card__type {
+    font-size: 12px;
+    gap: 5px;
+  }
+
+  .order-card__current-status {
+    font-size: 10px;
+    gap: 4px;
+  }
+
   .order-card__content {
-    padding: 16px 14px 12px;
+    padding: 14px 12px 10px;
+  }
+
+  .order-card__footer {
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .resume-btn {
+    height: 40px;
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .single .resume-btn {
+    width: 120px;
   }
 }

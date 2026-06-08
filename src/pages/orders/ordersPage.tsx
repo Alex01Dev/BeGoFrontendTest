@@ -25,21 +25,23 @@ export default function OrdersPage() {
 
   return (
     <main className="orders-page">
-      <Header />
+      <div className="orders-page__container">
+        <Header />
 
-      <Tabs activeTab="Upcoming" onTabChange={() => {}} />
+        <Tabs activeTab="Upcoming" onTabChange={() => {}} />
 
-      <SearchBar value={search} onChange={setSearch} />
+        <SearchBar value={search} onChange={setSearch} />
 
-      <section className="orders-list">
-        {filteredOrders.length > 0 ? (
-          filteredOrders.map((order) => (
-            <OrderCard key={order._id} order={order} />
-          ))
-        ) : (
-          <p>No orders found</p>
-        )}
-      </section>
+        <section className="orders-list">
+          {filteredOrders.length > 0 ? (
+            filteredOrders.map((order) => (
+              <OrderCard key={order._id} order={order} />
+            ))
+          ) : (
+            <p>No orders found</p>
+          )}
+        </section>
+      </div>
     </main>
   );
 }

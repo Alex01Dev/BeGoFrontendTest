@@ -1,15 +1,42 @@
+@use "../../styles/variables" as *;
+
 .orders-page {
+  width: 100%;
+  min-height: 100vh;
   padding: 16px;
 }
 
-@media (min-width: 768px) {
+.orders-page__container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: $tablet) {
   .orders-page {
     padding: 24px;
   }
+
+  .orders-page__container {
+    max-width: 600px;
+  }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: $laptop) {
   .orders-page {
     padding: 32px;
+  }
+
+  .orders-page__container {
+    max-width: 680px;
+  }
+}
+
+@media (min-width: $desktop) {
+  .orders-page {
+    padding: 40px;
+  }
+
+  .orders-page__container {
+    max-width: 720px;
   }
 }

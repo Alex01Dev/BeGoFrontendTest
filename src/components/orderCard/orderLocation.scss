@@ -2,16 +2,9 @@
 
 .order-card__location {
   position: relative;
-
   display: grid;
-
-  grid-template-columns:
-    52px
-    minmax(0, 1fr)
-    64px;
-
+  grid-template-columns: 52px minmax(0, 1fr) 64px;
   column-gap: 14px;
-
   align-items: start;
 }
 
@@ -21,28 +14,22 @@
 
 .pickup::after {
   content: "";
-
   position: absolute;
-
   left: 24px;
   top: 42px;
   bottom: -12px;
-
   width: 2px;
-
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.7),
     rgba(255, 255, 255, 0.1)
   );
-
   border-radius: 999px;
 }
 
 .location-icon {
   width: 48px;
   min-width: 48px;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,47 +43,35 @@
 .location-icon--dropoff svg {
   width: 24px;
   height: 24px;
-
   transform: translateY(12px);
 }
 
 .location-info {
   min-width: 0;
-
   text-align: left;
 }
 
 .location-label {
   display: block;
-
   margin-bottom: 3px;
-
   color: $pickup_dropoff;
-
   font-size: 7px;
   font-weight: 700;
-
   letter-spacing: 1.4px;
 }
 
 .location-info h4 {
   margin: 0;
-
   color: $text-primary;
-
   font-size: 15px;
   font-weight: 700;
-
   line-height: 1.1;
 }
 
 .location-info p {
   margin-top: 2px;
-
   color: $location-info;
-
   font-size: 12px;
-
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -106,40 +81,191 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-
   padding-top: 2px;
 }
 
 .location-date span {
   color: $location-date;
-
   font-size: 10px;
   font-weight: 500;
-
   line-height: 1;
 }
 
 .location-date strong {
   margin-top: 3px;
-
   color: $text-primary;
-
   font-size: 15px;
   font-weight: 600;
-
   line-height: 1;
 }
 
-@media (max-width: $mobile) {
+@media (min-width: $desktop) {
+  .order-card__location {
+    grid-template-columns: 56px minmax(0, 1fr) 72px;
+    column-gap: 16px;
+  }
+
+  .location-icon {
+    width: 52px;
+    min-width: 52px;
+  }
+
+  .location-icon--pickup svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .location-icon--dropoff svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .location-info h4 {
+    font-size: 16px;
+  }
+
+  .location-info p {
+    font-size: 13px;
+  }
+
+  .location-date span {
+    font-size: 11px;
+  }
+
+  .location-date strong {
+    font-size: 16px;
+  }
+
+  .dropoff {
+    margin-top: 18px;
+  }
+}
+
+@media (min-width: $laptop) and (max-width: #{$desktop - 1px}) {
   .location-info h4 {
     font-size: 15px;
+  }
+
+  .location-date strong {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: $tablet) and (max-width: #{$laptop - 1px}) {
+  .order-card__location {
+    grid-template-columns: 48px minmax(0, 1fr) 60px;
+    column-gap: 12px;
+  }
+
+  .location-icon {
+    width: 44px;
+    min-width: 44px;
+  }
+
+  .location-info h4 {
+    font-size: 14px;
   }
 
   .location-info p {
     font-size: 11px;
   }
 
+  .location-date span {
+    font-size: 9px;
+  }
+
   .location-date strong {
-    font-size: 15px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: #{$tablet - 1px}) {
+  .order-card__location {
+    grid-template-columns: 46px minmax(0, 1fr) 58px;
+    column-gap: 10px;
+  }
+
+  .location-icon {
+    width: 42px;
+    min-width: 42px;
+  }
+
+  .location-icon--pickup svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .location-icon--dropoff svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .location-info h4 {
+    font-size: 14px;
+  }
+
+  .location-info p {
+    font-size: 11px;
+  }
+
+  .location-date span {
+    font-size: 9px;
+  }
+
+  .location-date strong {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: $mobile) {
+  .order-card__location {
+    grid-template-columns: 42px minmax(0, 1fr) 54px;
+    column-gap: 8px;
+  }
+
+  .location-icon {
+    width: 38px;
+    min-width: 38px;
+  }
+
+  .location-icon--pickup svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .location-icon--dropoff svg {
+    width: 20px;
+    height: 20px;
+    transform: translateY(10px);
+  }
+
+  .location-label {
+    font-size: 6.5px;
+    letter-spacing: 1.2px;
+  }
+
+  .location-info h4 {
+    font-size: 13px;
+  }
+
+  .location-info p {
+    font-size: 11px;
+  }
+
+  .location-date span {
+    font-size: 9px;
+  }
+
+  .location-date strong {
+    font-size: 13px;
+    margin-top: 2px;
+  }
+
+  .dropoff {
+    margin-top: 14px;
+  }
+
+  .pickup::after {
+    top: 38px;
   }
 }

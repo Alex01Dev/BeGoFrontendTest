@@ -2,21 +2,22 @@
 
 .pickup-btn {
   height: 44px;
-
   border: none;
-
   background: $yellow;
-
   color: #111;
-
   font-size: 14px;
   font-weight: 700;
-
   cursor: pointer;
-
   border-radius: 0 20px 0 18px;
-
   transition: all 0.25s ease;
+
+  &:hover:not(:disabled) {
+    background: #e6d600;
+  }
+
+  &:active:not(:disabled) {
+    background: #d4c400;
+  }
 }
 
 .pickup-btn:disabled {
@@ -25,18 +26,13 @@
 
 .pickup-btn--active {
   background: rgba(47, 49, 53, 0.2) !important;
-
   border: 1px solid rgba(90, 90, 90, 0.45);
-
   color: $text-primary;
-
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-
   padding: 0 14px;
-
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.03),
     0 0 18px rgba(234, 244, 252, 0.12);
@@ -44,30 +40,114 @@
 
 .pickup-label {
   color: rgba(255, 255, 255, 0.78);
-
   font-size: 13px;
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .pickup-time {
   color: $yellow;
-
   font-size: 14px;
   font-weight: 700;
-
   letter-spacing: 0.4px;
+  flex-shrink: 0;
 }
 
 @keyframes pulseTimer {
-  0% {
-    opacity: 1;
+  0%   { opacity: 1; }
+  50%  { opacity: 0.65; }
+  100% { opacity: 1; }
+}
+
+@media (min-width: $desktop) {
+  .pickup-btn {
+    height: 48px;
+    font-size: 15px;
   }
 
-  50% {
-    opacity: 0.65;
+  .pickup-btn--active {
+    gap: 10px;
+    padding: 0 18px;
   }
 
-  100% {
-    opacity: 1;
+  .pickup-label {
+    font-size: 14px;
+  }
+
+  .pickup-time {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: $laptop) and (max-width: #{$desktop - 1px}) {
+  .pickup-btn {
+    height: 46px;
+  }
+
+  .pickup-btn--active {
+    padding: 0 16px;
+  }
+}
+
+@media (min-width: $tablet) and (max-width: #{$laptop - 1px}) {
+  .pickup-btn {
+    height: 42px;
+    font-size: 13px;
+  }
+
+  .pickup-btn--active {
+    gap: 6px;
+    padding: 0 12px;
+  }
+
+  .pickup-label {
+    font-size: 12px;
+  }
+
+  .pickup-time {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: #{$tablet - 1px}) {
+  .pickup-btn {
+    height: 42px;
+    font-size: 13px;
+  }
+
+  .pickup-btn--active {
+    gap: 6px;
+    padding: 0 10px;
+  }
+
+  .pickup-label {
+    font-size: 12px;
+  }
+
+  .pickup-time {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: $mobile) {
+  .pickup-btn {
+    height: 40px;
+    font-size: 12px;
+  }
+
+  .pickup-btn--active {
+    gap: 5px;
+    padding: 0 8px;
+  }
+
+  .pickup-label {
+    font-size: 11px;
+  }
+
+  .pickup-time {
+    font-size: 12px;
+    letter-spacing: 0.2px;
   }
 }

@@ -2,9 +2,7 @@
 
 .destination-panel {
   border-radius: 16px;
-
   border: 1px solid rgba(255, 255, 255, 0.08);
-
   background:
     radial-gradient(
       circle at top left,
@@ -16,23 +14,15 @@
 
 .destination-panel__header {
   width: 100%;
-
   height: 54px;
-
   border: none;
-
   background: transparent;
-
   padding: 0 18px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   cursor: pointer;
-
   border-radius: 16px;
-
   transition: background 0.2s ease;
 
   &:hover {
@@ -47,84 +37,140 @@
 
 .destination-panel__title {
   color: $text-primary;
-
   font-size: 15px;
   font-weight: 700;
-
   letter-spacing: 0.2px;
 }
 
 .destination-panel__arrow {
   color: $yellow;
-
   font-size: 18px;
-
   line-height: 1;
-
   display: flex;
   align-items: center;
-
   transition: transform 0.2s ease;
 }
 
 .destination-panel__content {
   padding: 4px 18px 22px;
-
   display: flex;
   flex-direction: column;
-
   gap: 14px;
 }
 
 .destination-panel__content p {
   margin: 0;
-
   color: $text-primary;
-
   font-size: 14px;
   font-weight: 500;
-
   line-height: 1.45;
-
   text-align: left;
 }
 
 .destination-panel__address {
   font-weight: 600 !important;
-
   line-height: 1.5 !important;
 }
 
 .destination-panel__datetime {
   display: flex;
   align-items: center;
-
   gap: 10px;
 }
 
 .destination-panel__dot {
   color: $yellow;
-
   font-size: 16px;
-
   line-height: 1;
 }
 
-
-@media (max-width: $mobile) {
+@media (min-width: $desktop) {
   .destination-panel__header {
-    height: 50px;
+    height: 60px;
+    padding: 0 24px;
+  }
 
-    padding: 0 14px;
+  .destination-panel__title {
+    font-size: 16px;
   }
 
   .destination-panel__content {
-    padding: 4px 14px 18px;
+    padding: 6px 24px 26px;
+    gap: 16px;
+  }
 
-    gap: 12px;
+  .destination-panel__content p {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: $laptop) and (max-width: #{$desktop - 1px}) {
+  .destination-panel__header {
+    height: 56px;
+    padding: 0 20px;
+  }
+
+  .destination-panel__content {
+    padding: 4px 20px 24px;
+    gap: 15px;
+  }
+
+  .destination-panel__content p {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: $tablet) and (max-width: #{$laptop - 1px}) {
+  .destination-panel__header {
+    height: 52px;
+    padding: 0 18px;
+  }
+
+  .destination-panel__content p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: #{$tablet - 1px}) {
+  .destination-panel__header {
+    height: 50px;
+    padding: 0 16px;
   }
 
   .destination-panel__title {
     font-size: 14px;
+  }
+
+  .destination-panel__content {
+    padding: 4px 16px 20px;
+    gap: 12px;
+  }
+
+  .destination-panel__content p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: $mobile) {
+  .destination-panel__header {
+    height: 48px;
+    padding: 0 14px;
+  }
+
+  .destination-panel__title {
+    font-size: 13px;
+  }
+
+  .destination-panel__content {
+    padding: 4px 14px 18px;
+    gap: 12px;
+  }
+
+  .destination-panel__content p {
+    font-size: 13px;
+  }
+
+  .destination-panel__datetime {
+    gap: 8px;
   }
 }
