@@ -1,4 +1,4 @@
-import "./OrderCard.scss";
+import "./orderCard.scss";
 
 import type { UpcomingOrder } from "../../types/upcomingOrderTypes";
 

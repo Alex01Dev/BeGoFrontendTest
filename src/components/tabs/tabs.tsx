@@ -1,4 +1,4 @@
-import "./Tabs.scss";
+import "./tabs.scss";
 
 interface TabsProps {
   activeTab: string;

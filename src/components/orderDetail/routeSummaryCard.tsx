@@ -1,4 +1,4 @@
-import "./RouteSummaryCard.scss";
+import "./routeSummaryCard.scss";
 
 import TrailerIcon from "../../assets/icons/TrailerIcon";
 import LocationIcon from "../../assets/icons/LocationIcon";

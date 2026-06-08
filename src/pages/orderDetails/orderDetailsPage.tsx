@@ -1,4 +1,4 @@
-import "./OrderDetailPage.scss";
+import "./orderDetailPage.scss";
 
 import { useState } from "react";
 import { useParams } from "react-router-dom";
