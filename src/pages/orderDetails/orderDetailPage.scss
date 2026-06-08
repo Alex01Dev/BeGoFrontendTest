@@ -2,22 +2,55 @@
 
 .order-detail-page {
   width: 100%;
+  min-height: 100vh;
+  padding: 0 16px 32px;
+}
 
+.order-detail-page__container {
+  width: 100%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-
   gap: 12px;
-
-  padding: 0 16px 32px;
 }
 
 .order-detail-page h1 {
   color: $text-primary;
-
   font-size: 24px;
   font-weight: 700;
-
   text-align: center;
-
   margin-bottom: 12px;
+}
+
+@media (min-width: $tablet) {
+  .order-detail-page {
+    padding: 0 24px 40px;
+  }
+
+  .order-detail-page__container {
+    max-width: 600px;
+    gap: 14px;
+  }
+}
+
+@media (min-width: $laptop) {
+  .order-detail-page {
+    padding: 0 32px 48px;
+  }
+
+  .order-detail-page__container {
+    max-width: 680px;
+    gap: 16px;
+  }
+}
+
+@media (min-width: $desktop) {
+  .order-detail-page {
+    padding: 0 40px 56px;
+  }
+
+  .order-detail-page__container {
+    max-width: 720px;
+    gap: 18px;
+  }
 }

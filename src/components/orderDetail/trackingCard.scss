@@ -2,15 +2,10 @@
 
 .tracking-card {
   position: relative;
-
   margin-top: 60px;
-
   overflow: visible;
-
   border-radius: 22px;
-
   border: 1px solid rgba(255, 255, 255, 0.08);
-
   background:
     radial-gradient(
       circle at center top,
@@ -22,34 +17,24 @@
 
 .tracking-card__avatar-wrapper {
   position: absolute;
-
   top: -44px;
   left: 50%;
-
   transform: translateX(-50%);
-
   width: 88px;
   height: 88px;
-
   border-radius: 50%;
-
   background: #151b24;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   border: 1px solid rgba(255, 255, 255, 0.08);
-
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
 }
 
 .tracking-card__avatar {
   width: 72px;
   height: 72px;
-
   border-radius: 50%;
-
   object-fit: cover;
 }
 
@@ -59,11 +44,8 @@
 
 .tracking-card__time {
   margin: 10px 0 30px;
-
   text-align: center;
-
   color: $text-primary;
-
   font-size: 18px;
   font-weight: 700;
 }
@@ -74,9 +56,7 @@
 
 .timeline-step {
   display: flex;
-
   gap: 14px;
-
   min-height: 52px;
 }
 
@@ -84,47 +64,34 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
   flex-shrink: 0;
 }
 
 .timeline-dot {
   width: 22px;
   height: 22px;
-
   border-radius: 50%;
-
   border: 2px solid rgba(255, 255, 255, 0.25);
-
   background: transparent;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   flex-shrink: 0;
 }
 
 .timeline-dot.done {
   background: $yellow;
-
   border-color: $yellow;
-
   box-shadow: 0 0 8px rgba(255, 238, 0, 0.35);
 }
 
 .timeline-line {
   width: 2px;
-
   flex: 1;
-
   min-height: 16px;
-
   margin-top: 4px;
   margin-bottom: 4px;
-
   background: rgba(255, 255, 255, 0.18);
-
   border-radius: 999px;
 }
 
@@ -134,9 +101,7 @@
 
 .timeline-label {
   padding-top: 3px;
-
   color: rgba(255, 255, 255, 0.32);
-
   font-size: 14px;
   font-weight: 500;
 }
@@ -147,47 +112,113 @@
 
 .tracking-card__button {
   width: 100%;
-
   height: 60px;
-
   margin-top: 12px;
-
   border: none;
-
   border-top: 1px solid rgba(255, 255, 255, 0.06);
-
   background: rgba(255, 255, 255, 0.03);
-
   color: rgba(255, 255, 255, 0.25);
-
   font-size: 16px;
   font-weight: 700;
-
   cursor: not-allowed;
-
   transition: all 0.25s ease;
-
   border-bottom-left-radius: 22px;
   border-bottom-right-radius: 22px;
 }
 
 .tracking-card__button--active {
   background: $yellow;
-
   color: #111;
-
   cursor: pointer;
 
   &:hover {
-    background: #f0e000;
+    background: #e6d600;
   }
 
   &:active {
-    background: #d9ca00;
+    background: #d4c400;
   }
 }
 
-@media (max-width: $tablet) {
+@media (min-width: $desktop) {
+  .tracking-card {
+    margin-top: 70px;
+  }
+
+  .tracking-card__avatar-wrapper {
+    width: 96px;
+    height: 96px;
+    top: -48px;
+  }
+
+  .tracking-card__avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .tracking-card__body {
+    padding: 80px 24px 0;
+  }
+
+  .tracking-card__time {
+    font-size: 20px;
+    margin-bottom: 34px;
+  }
+
+  .timeline-label {
+    font-size: 15px;
+  }
+
+  .timeline-dot {
+    width: 24px;
+    height: 24px;
+  }
+
+  .tracking-card__button {
+    height: 64px;
+    font-size: 17px;
+  }
+
+  .timeline-step {
+    min-height: 56px;
+  }
+}
+
+@media (min-width: $laptop) and (max-width: #{$desktop - 1px}) {
+  .tracking-card__body {
+    padding: 76px 22px 0;
+  }
+
+  .tracking-card__time {
+    font-size: 19px;
+  }
+
+  .tracking-card__button {
+    height: 62px;
+  }
+}
+
+@media (min-width: $tablet) and (max-width: #{$laptop - 1px}) {
+  .tracking-card__avatar-wrapper {
+    width: 84px;
+    height: 84px;
+  }
+
+  .tracking-card__avatar {
+    width: 68px;
+    height: 68px;
+  }
+
+  .tracking-card__body {
+    padding: 72px 18px 0;
+  }
+
+  .timeline-label {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: #{$tablet - 1px}) {
   .tracking-card__avatar-wrapper {
     width: 82px;
     height: 82px;
@@ -197,11 +228,9 @@
     width: 66px;
     height: 66px;
   }
-}
 
-@media (max-width: $mobile) {
   .tracking-card__body {
-    padding: 70px 14px 0;
+    padding: 70px 16px 0;
   }
 
   .timeline-label {
@@ -210,5 +239,51 @@
 
   .tracking-card__button {
     height: 56px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: $mobile) {
+  .tracking-card {
+    margin-top: 54px;
+  }
+
+  .tracking-card__avatar-wrapper {
+    width: 76px;
+    height: 76px;
+    top: -38px;
+  }
+
+  .tracking-card__avatar {
+    width: 62px;
+    height: 62px;
+  }
+
+  .tracking-card__body {
+    padding: 62px 14px 0;
+  }
+
+  .tracking-card__time {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .timeline-label {
+    font-size: 13px;
+  }
+
+  .timeline-step {
+    min-height: 46px;
+    gap: 12px;
+  }
+
+  .timeline-dot {
+    width: 20px;
+    height: 20px;
+  }
+
+  .tracking-card__button {
+    height: 52px;
+    font-size: 14px;
   }
 }

@@ -20,52 +20,59 @@ export default function OrderDetailPage() {
   const { order, loading, error } = useOrderDetail(id!);
 
   if (loading) return <h1>Loading...</h1>;
-  if (error) return <h1>{error}</h1>;
-  if (!order) return <h1>No order found</h1>;
+  if (error)   return <h1>{error}</h1>;
+  if (!order)  return <h1>No order found</h1>;
 
   const forceCanTrack =
     import.meta.env.VITE_FORCE_CAN_TRACK === "true";
-const forceStatus = import.meta.env.VITE_FORCE_STATUS
-  ? Number(import.meta.env.VITE_FORCE_STATUS)
-  : null;
 
-const detail = mapOrderToDetail(
-  forceStatus !== null
-    ? { ...order, status: forceStatus }
-    : order
-);  const isPickup = activeDestination === "pickup";
+  const forceStatus = import.meta.env.VITE_FORCE_STATUS
+    ? Number(import.meta.env.VITE_FORCE_STATUS)
+    : null;
+
+  const detail = mapOrderToDetail(
+    forceStatus !== null
+      ? { ...order, status: forceStatus }
+      : order
+  );
+
+  const isPickup = activeDestination === "pickup";
 
   const address = isPickup ? detail.pickupAddress : detail.dropoffAddress;
-  const date = isPickup ? detail.pickupDate : detail.dropoffDate;
-  const time = isPickup ? detail.pickupTime : detail.dropoffTime;
+  const date    = isPickup ? detail.pickupDate    : detail.dropoffDate;
+  const time    = isPickup ? detail.pickupTime    : detail.dropoffTime;
 
   return (
     <div className="order-detail-page">
-      <Header />
+      <div className="order-detail-page__container">
 
-      <RouteSummaryCard
-        orderNumber={detail.orderNumber}
-        referenceNumber={detail.referenceNumber}
-        pickupAddress={detail.pickupAddress}
-        dropoffAddress={detail.dropoffAddress}
-        activeDestination={activeDestination}
-        onChange={setActiveDestination}
-      />
+        <Header />
 
-      <TrackingCard
-        steps={detail.statusSteps}
-        canTrack={forceCanTrack || detail.canTrack}
-        time="10:30 PM"
-      />
+        <RouteSummaryCard
+          orderNumber={detail.orderNumber}
+          referenceNumber={detail.referenceNumber}
+          pickupAddress={detail.pickupAddress}
+          dropoffAddress={detail.dropoffAddress}
+          activeDestination={activeDestination}
+          onChange={setActiveDestination}
+        />
 
-      <DestinationPanel
-        title={isPickup ? "Pickup Data" : "Dropoff Data"}
-        address={address}
-        date={date}
-        time={time}
-        phone={detail.driverPhone}
-        email={detail.driverEmail}
-      />
+        <TrackingCard
+          steps={detail.statusSteps}
+          canTrack={forceCanTrack || detail.canTrack}
+          time="10:30 PM"
+        />
+
+        <DestinationPanel
+          title={isPickup ? "Pickup Data" : "Dropoff Data"}
+          address={address}
+          date={date}
+          time={time}
+          phone={detail.driverPhone}
+          email={detail.driverEmail}
+        />
+
+      </div>
     </div>
   );
 }
